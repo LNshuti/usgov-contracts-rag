@@ -2,7 +2,7 @@ import sqlite3
 import pandas as pd
 import pyarrow as pa
 
-CSV_FILE_PATH = 'data/ContractOpportunitiesFullCSV.csv'
+CSV_FILE_PATH = 'data/contract_subset.csv'
 PARQUET_FILE_PATH = 'data/sample_contract_df.parquet'
 DB_FILE_PATH = 'gov-contracts.db'
 TABLE_NAME = 'table_name'
