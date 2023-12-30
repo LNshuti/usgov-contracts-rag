@@ -1,0 +1,152 @@
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+suppressWarnings(suppressMessages(source(here::here("R/manifest.R"))))
+
+source(here("R/map-theme.R"))
+#source(here("R/shared-objects.R"))
+source(here("R/theme-tufte-revised.R"))
+```
+
+
+```{r}
+tabl <- read_csv("data/ContractOpportunitiesFullCSV.csv") %>% 
+  as_tibble() %>% 
+  janitor::clean_names()
+
+tabl %>% 
+  head()
+```
+
+# Model Contract Award by characteristics(features)
+1. Sub-Tier 
+
+## The power law is the law of the universe. An empirical study of US Govenment contract awards. 
+
+Earlier this year, I listened to Peter Thiel's book Zero to One on Audible. After finishing the first listen, I had already decided that I would be listening to this book several times, which I have already done this year. One embarrassing anecdote is that sometimes when my wife is traveling for work, I fall asleep listening to audio books, which the hope that I would get a bit smarter by the morning... But I digress. In Zero to One, Peter Thiel spends a chapter describing the concept of the Power Law, which I would define as the observed properties in several aspects of life of not very unequal outcomes in life such as wealth distribution, size of successful companies and the magnitude of the largest companies versus every one else... 
+
+In this short post, I demonstrate that the Power Law applies also to US. Government contract awards. Using the latest data, and going back in time, I show that the winners of Government contract awards, which is a very large component of the US economy is dominated by a few contractors who win most of the contracts. 
+
+# First. Let us simulate the Power Distribution using synthetic data 
+
+```{r}
+# Generate power law data
+set.seed(123) # for reproducibility
+alpha <- 2.5 # shape parameter
+n <- 1000000 # number of data points
+x <- (1:n) ^ (-1 / alpha)
+
+# Prepare data for log-log plot
+data <- data.frame(x = 1:n, y = x)
+data <- data[data$y > 0, ] # remove zeroes
+data$logx <- log10(data$x)
+data$logy <- log10(data$y)
+
+# Plot the data on a log-log scale
+ggplot(data, aes(x = logx, y = logy)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", color = "blue") +
+  labs(title = "Power Law Distribution",
+       subtitle = paste("Shape parameter alpha =", alpha),
+       x = "log10(x)", y = "log10(y)")
+
+# Fit a linear model to the log-log data
+model <- lm(logy ~ logx, data = data)
+summary(model)
+
+```
+
+# The Power law and US Gov Contracts 
+```{r}
+library(stackloss)
+library(faraway)
+
+N_ <- 
+  tabl %>% 
+  filter(award < 3.200e+8) %>% 
+  select(where(is.numeric))
+
+N_ %>%
+  summary()
+
+hist(N_$award)
+
+plot(density(N_$award, na.rm = TRUE))
+
+tabl %>% 
+  select(where(is.character)) %>%
+  summary()
+
+library(ggplot2)
+
+ggplot(N_, aes(x = award)) +
+  #geom_histogram() + 
+  geom_density()
+
+
+
+```
+
+
+
+
+```{r}
+# Total award by firm
+tabl %>% 
+  group_by(awardee) %>% 
+  summarize(sum_award = sum(award, na.rm = TRUE)) %>% 
+  arrange(desc(sum_award))
+
+# Total award over time 
+tabl %>%
+  mutate(date_only = year(posted_date)) %>%
+  group_by(date_only) %>%
+  summarize(sum_award = sum(award, na.rm = TRUE)) %>% 
+  filter(sum_award > 100000) %>%
+  ggplot(data = ., aes(x = date_only, y = sum_award)) + 
+  geom_point() + 
+  geom_line()
+
+
+# Plot treemap 
+library(treemapify)
+
+tabl_df_naics <- 
+  tabl %>%
+  group_by(naics_code) %>%
+  summarize(sum_award = sum(award, na.rm = TRUE)) %>%
+  filter(sum_award > 0)
+
+ggplot(tabl_df_naics, aes(area = sum_award, fill = naics_code, label = naics_code)) +
+  geom_treemap() +
+  geom_treemap_text() + 
+  theme_tufte_revised()
+
+tabl_df_cgac <- 
+  tabl %>%
+  group_by(cgac) %>%
+  summarize(sum_award = sum(award, na.rm = TRUE)) %>%
+  filter(sum_award > 0) %>% 
+  mutate(sum_award_millions = round(sum_award/1000000))
+
+library(glue)
+ggplot(tabl_df_cgac, aes(area = sum_award_millions, fill = cgac, label = glue::glue("{cgac} {sum_award_millions}"))) +
+  geom_treemap() +
+  geom_treemap_text() + 
+  theme_minimal()
+
+
+
+```
+
+### Appendix: Other fun examples 
+
+#### The Number of downloads of python packages 
+
+#### The number of github stars for repositories 
+
+#### The salary of football players in the United States 
+
+

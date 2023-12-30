@@ -1,0 +1,388 @@
+# The Power law and US Gov Contracts: An empirical study of US Govenment contract awards. 
+
+Earlier this year, I listened to Peter Thiel's book Zero to One on Audible. After finishing the first listen, I had already decided that I would be listening to this book several times, which I have already done this year. One embarrassing anecdote is that sometimes when my wife is traveling for work, I fall asleep listening to audio books, which the hope that I would get a bit smarter by the morning... But I digress. In Zero to One, Peter Thiel spends a chapter describing the concept of the Power Law, which I would define as the observed properties in several aspects of life of not very unequal outcomes in life such as wealth distribution, size of successful companies and the magnitude of the largest companies versus every one else... 
+
+In this short post, I demonstrate that the Power Law applies also to US. Government contract awards. Using the latest data, and going back in time, I show that the winners of Government contract awards, which is a very large component of the US economy is dominated by a few contractors who win most of the contracts. 
+
+<!-- ### First. Let us simulate the Power Distribution using synthetic data -->
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+suppressWarnings(suppressMessages(source(here::here("R/manifest.R"))))
+
+source(here("R/map-theme.R"))
+#source(here("R/shared-objects.R"))
+source(here("R/theme-tufte-revised.R"))
+```
+
+```{r, include=FALSE}
+##### Helper functions
+library(gt)
+# Reusable Functions
+filter_year <- function(data, year = 2023) {
+  data %>% filter(year(posted_date) == year)
+}
+
+summarize_awards <- function(data, group_field, sum_condition = sum_award > 1000) {
+  data %>% 
+    group_by({{group_field}}) %>% 
+    summarize(sum_award = sum(award, na.rm = TRUE)) %>% 
+    arrange(desc(sum_award)) %>%
+    filter({{sum_condition}}) %>%
+    head(25)
+}
+
+format_table <- function(data, column) {
+  data %>% 
+    gt() %>% 
+    fmt_currency(columns = {{column}}, decimals = 0)
+}
+
+top_n_by_field <- function(data, group_field, n = 2) {
+  data %>%
+    arrange(desc(award)) %>%
+    group_by({{group_field}}) %>%
+    top_n(n = n) %>%
+    ungroup() %>%
+    select(contains("award"), {{group_field}})
+}
+
+```
+
+#### Motivation
+The data we are using shows that contracts that were issued by the US government in 2023 alone amounted to a staggering $666 Billion USD$ approximately. This amount is larger than most American publicly traded companies' market capitalization. 
+
+#### About the data 
+We use Official US. Government data from [SAM.Gov](https://sam.gov/content/home), which is a publicly available data source that keeps track of active government contracts including details such as the issuing government agency, the contract amount, the location of the issuing agency such as the State, City and Zip code. We focus on the latest year of contract issuance. 
+
+
+##### Load the Data and show data dictionary
+The data contains 64481 rows with 47 columns. 
+
+```{r}
+tabl <- read_csv("data/ContractOpportunitiesFullCSV.csv") %>% 
+  as_tibble() %>% 
+  janitor::clean_names()
+
+tabl %>% 
+  dim()
+```
+
+```{r}
+tabl %>% 
+  glimpse()
+```
+
+#### Data quality checks
+##### Summarize the number of missing values for each variable
+
+```{r gtbl=TRUE, echo=FALSE}
+library(dlookr)
+tabl %>% 
+  diagnose() %>% 
+  arrange(desc(missing_percent)) %>% 
+  gt::gt() %>% 
+  gt::cols_label(
+    variables = 'Variable',
+    types = 'Type',
+    missing_count = 'N Missing',
+    missing_percent = '% Missing',
+    unique_count = 'N Unique',
+    unique_rate = 'Unique rate'
+  ) %>% 
+  fmt_number(
+    decimals = 1,
+    use_seps = FALSE
+  ) %>%
+cols_hide(columns = c(unique_rate)) %>% 
+cols_align(align = "left") %>% # Set the alignment of columns to left 
+tab_options(., container.width = 600, container.height = 600)
+```
+
+##### Variables with less than 10% missing values
+```{r}
+tabl %>% 
+  select(naics_code, archive_date, classification_code,state,zip_code, aac_code,
+        city, country_code, sub_tier, primary_contact_fullname, office, fpds_code,
+        department_ind_agency, cgac, organization_type, sol_number, notice_id,	
+        title, posted_date, type, base_type, archive_type, active, link         
+         ) %>% 
+  glimpse()
+
+```
+
+##### Interesting Variables with > 20% missing values
+####### Contact Name and Email
+```{r, echo=FALSE}
+tabl %>%
+  select(secondary_contact_fullname, secondary_contact_email, award) %>%
+  filter(!is.na(secondary_contact_email)) %>% 
+  filter(!is.na(award)) %>%
+  arrange(desc(award)) %>%
+  gt() %>%
+  gt::cols_label(
+    secondary_contact_fullname = 'Secondary Contact Full Name',
+    secondary_contact_email = 'Secondary Contact Email',
+    award = 'Award $'
+  ) %>%
+  gt::fmt_currency(columns = award, decimals = 0) %>%
+  tab_options(., container.width = 600, container.height = 600)
+
+```
+
+
+### Key Variable: Contract Issuance Amount
+
+The data set we are working with has more of the latest contract awards. As shown by the plot below, the sum of contract awards information contained in this dataset exceeds $500 Billion Usd in 2023 alone. The fact that contract awards are close to zero in 2016 to 2018 indicates that this data doesn't have a good record of contract issuance in those years. To get this information, we would need to download archived contract information from SAM.gov. Therefore, our analysis will focus on the most recent two years. 
+
+```{r, include=FALSE}
+# The Size of US Govenment Contracts. The data we have access to contains award information 
+# Total award over time 
+awards_over_time <- 
+  tabl %>%
+  mutate(date_only = year(posted_date)) %>%
+  group_by(date_only) %>%
+  summarize(sum_award = sum(award, na.rm = TRUE)) %>% 
+  mutate(award_millions = paste(format(round(sum_award / 1e6, 1), trim = TRUE), "M"))
+
+
+awards_over_time %>% 
+  filter(sum_award > 100000) %>%
+  ggplot(data = ., aes(x = date_only, y = sum_award)) + 
+  geom_point() + 
+  geom_line()
+```
+
+
+```{r, include=FALSE}
+N_ <- 
+  tabl %>% 
+  mutate(award_millions = award/1000000) %>% 
+  #filter(award < 3.200e+8) %>% 
+  select(where(is.numeric))
+
+library(ggplot2)
+
+# First, show a density plot of the award values
+ggplot(N_, aes(x = award_millions)) +
+  geom_density() 
+
+ggplot(N_, aes(x = award_millions)) +
+  geom_histogram() 
+
+# Given how skewed the data is, use a boxplot. Convert the amount to Millions USD
+ggplot(N_, aes(x = award_millions)) +
+  geom_boxplot() 
+
+```
+
+## Uncovering the Patterns
+
+Upon analyzing the data, some fascinating patterns emerge. The distribution of contract awards is far from uniform. A few firms capture a disproportionately large share of the total awards, a classic hallmark of the Power Law. This isn't just a quirk of economics; it mirrors natural phenomena, where a few elements dominate the landscape. 
+
+### Key Insights
+
+1. **Concentration of Contracts**: The top firms, when ranked by the sum of awards they've received, show a steep drop-off in contract values. It's a classic 'rich get richer' scenario, prevalent in many sectors of the economy.
+
+2. **Temporal Trends**: Over time, the total value of awards fluctuates, but the concentration within top players remains consistent. This suggests that market dynamics in government contracts are stable and possibly oligopolistic.
+
+3. **Sector-Specific Patterns**: By analyzing the North American Industry Classification System (NAICS) codes, we see specific sectors where contract awards are particularly concentrated. 
+
+4. **Agency Preferences**: Different government agencies (represented by CGAC codes) show varying levels of spending and preferences for certain contractors. This can be a crucial insight for new entrants strategizing to penetrate this market.
+
+#### Model Contract Award by characteristics(features). 
+#### Data year 2023
+<!-- 1. Are these insights/results industry specific or are the firms you analyzed representative of different industries where the government has contracts? -->
+
+
+<!-- 2. you mentioned sector-specific patterns. what major sectors appear to have the most skewness towards powerful firms? on the other hand, what sectors tend to easily welcome new players? -->
+
+#####  Contract Awards by Sub-Tier.  
+The FEDERAL ACQUISITION SERVICE issued the most contracts in 2023. The second largest issuer of contracts was the Departments of Education, Veteran Affairs, the Navy and then the Army. 
+
+```{r, echo = FALSE}
+tabl %>% 
+  filter(year(posted_date)== 2023) %>% 
+  group_by(sub_tier) %>% 
+  summarize(sum_award = sum(award, na.rm = TRUE)) %>% 
+  arrange(desc(sum_award)) %>%
+  filter(sum_award > 1000) %>%
+  head(15) %>% 
+  gt::gt() %>% 
+  fmt_number(
+    decimals = 1,
+    use_seps = FALSE
+  ) %>%
+  gt::fmt_currency(columns = sum_award)
+
+```
+
+#####  Which were the top two contractors within each of the five largest subtiers
+```{r, echo = FALSE}
+top_5_subtier <- 
+  tabl %>%
+  filter(year(posted_date)== 2023) %>% 
+  group_by(sub_tier) %>% 
+  summarize(sum_award = sum(award, na.rm = TRUE)) %>% 
+  arrange(desc(sum_award)) %>% 
+  head(5) %>% 
+  pull(sub_tier)
+
+tabl %>% 
+  filter(year(posted_date)== 2023) %>% 
+  filter(!is.na(award)) %>%
+  filter(sub_tier %in% top_5_subtier) %>%
+  arrange(desc(award)) %>% 
+  group_by(sub_tier) %>%
+  top_n(n = 2) %>% 
+  ungroup() %>%
+  select(contains("award"), sub_tier) %>%
+  gt::gt() %>%
+  cols_hide(columns = c(award_number)) %>% 
+  gt::cols_label(
+    award_date = 'Award Date',
+    award = 'Award $',
+    awardee = 'Awardee',
+    sub_tier = 'Sub-tier'
+  ) %>%
+  gt::fmt_currency(columns = award, decimals = 0) 
+
+
+```
+#### Summarize Contract Award Within the Department of Education 
+
+```{r, echo=FALSE}
+tabl %>%
+  filter(year(posted_date)== 2023, sub_tier == "EDUCATION, DEPARTMENT OF") %>% 
+  select(contains("award")) %>%
+  filter(!is.na(award)) %>% 
+  arrange(desc(award)) %>% 
+  gt::gt() %>% 
+  cols_hide(columns = c(award_number)) %>% 
+  fmt_number(
+    decimals = 1,
+    use_seps = FALSE
+  ) %>%
+  gt::fmt_currency(columns = award, decimals = 0)
+```
+
+#####  Award by State  
+```{r, echo=FALSE}
+state_analysis <- tabl %>%
+  filter_year() %>%
+  summarize_awards(state) %>%
+  format_table(sum_award)
+
+state_analysis
+```
+
+#####  Award by FPDS(Federal Procurement Data System) Code  
+```{r, echo=FALSE}
+county_analysis <- tabl %>%
+  filter_year() %>%
+  summarize_awards(fpds_code) %>%
+  format_table(sum_award)
+
+county_analysis
+```
+
+
+#####  Award by type    
+
+```{r, echo=FALSE}
+type_analysis <- tabl %>%
+  filter_year() %>%
+  summarize_awards(type) %>%
+  format_table(sum_award)
+
+type_analysis
+```
+
+#####  Award by department_ind_agency    
+
+```{r, echo=FALSE}
+agency_analysis <- tabl %>%
+  filter_year() %>%
+  summarize_awards(department_ind_agency) %>%
+  format_table(sum_award)
+
+agency_analysis
+```
+
+#####  Award by naics_code    
+
+```{r, echo=FALSE}
+naics_analysis <- tabl %>%
+  filter_year() %>%
+  summarize_awards(naics_code) %>%
+  format_table(sum_award)
+
+naics_analysis
+```
+
+#####  Award by awardee    
+
+```{r, echo=FALSE}
+awardee_analysis <- tabl %>%
+  filter(!is.na(awardee)) %>%
+  filter_year() %>%
+  summarize_awards(awardee) %>%
+  format_table(sum_award)
+
+awardee_analysis
+```
+
+#####  Award by cgac    
+
+```{r, echo=FALSE}
+cgac_analysis <- tabl %>%
+  filter_year() %>%
+  summarize_awards(cgac) %>%
+  format_table(sum_award)
+
+cgac_analysis
+```
+
+#####  Award by classification_code    
+
+```{r, echo=FALSE}
+classification_code_analysis <- tabl %>%
+  filter_year() %>%
+  summarize_awards(classification_code) %>%
+  format_table(sum_award)
+
+classification_code_analysis
+```
+
+#####  Award by Status    
+
+```{r, echo=FALSE}
+active_code_analysis <- tabl %>%
+  filter_year() %>%
+  summarize_awards(active) %>%
+  format_table(sum_award)
+
+active_code_analysis
+```
+#####  Award by base_type    
+
+```{r, echo=FALSE}
+base_type_code_analysis <- tabl %>%
+  filter_year() %>%
+  summarize_awards(base_type) %>%
+  format_table(sum_award)
+
+base_type_code_analysis
+```
+
+## Conclusion
+
+In conclusion, the Power Law's presence in US Government contract awards is unmistakable. For the curious economist, or anyone interested in the dynamics of market concentration, these findings offer a compelling glimpse into how large-scale economic interactions operate.
+
+If you're fascinated by these insights and want to dive deeper into the world of economic modeling and data analysis, don't hesitate to explore further. The world of data is vast and full of stories waiting to be uncovered!
+
+---
+
+That's a wrap on our exploration of the Power Law in US Government contracts. If you found this post interesting, feel free to share it with your peers or anyone who might enjoy this kind of economic detective work. Stay curious and keep exploring the fascinating world of economics!
