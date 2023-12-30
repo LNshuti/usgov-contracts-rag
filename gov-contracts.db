@@ -1,0 +1,5 @@
+# Load a CSV file from local directory into a postgres database. 
+
+import psycopg2
+import csv
+import sys
