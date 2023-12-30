@@ -118,6 +118,7 @@ class StreamlitChatPack(BaseLlamaPack):
             df = get_table_data(selected_table, conn)
             st.sidebar.text(f"Data for table '{selected_table}':")
             st.sidebar.dataframe(df)
+            st.dataframe(df)
     
         # Close the connection
         conn.close()
@@ -128,10 +129,8 @@ class StreamlitChatPack(BaseLlamaPack):
         Leonce Nshuti: 
         [Linkedin](https://www.linkedin.com/in/leoncenshuti/), [Github](https://github.com/LNshuti), [X](https://twitter.com/LeonceNshuti)
         """)
-
         st.sidebar.markdown('Inspired by Harshad Suryawanshi [Ecommerce RAG Demo](https://github.com/LNshuti/Na2SQL)')
     
-        
         
         st.sidebar.markdown('## Other Projects')
         st.sidebar.markdown("""

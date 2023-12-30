@@ -1,11 +1,14 @@
 import sqlite3
 import pandas as pd
+import openpyxl 
 import pyarrow as pa
 
+XLSX_FILE_PATH = 'data/BuyAmericanActExceptionsandWaiversOctober2023.xlsx'
 CSV_FILE_PATH = 'data/contract_subset.csv'
 PARQUET_FILE_PATH = 'data/sample_contract_df.parquet'
 DB_FILE_PATH = 'gov-contracts.db'
 TABLE_NAME = 'table_name'
+
 
 def remove_columns_with_missing_data(df, threshold=0.05):
     """Removes columns from a DataFrame if they are missing more than a certain percentage of their observations."""
@@ -18,6 +21,7 @@ def convert_csv_to_parquet(csv_file_path, parquet_file_path):
     try:
         df = pd.read_csv(csv_file_path, encoding='ISO-8859-1')
         df['Award$'] = pd.to_numeric(df['Award$'], errors='coerce')
+        df.columns = df.columns.str.lower().str.replace(' ', '_')
         df = remove_columns_with_missing_data(df)
 
         df.to_parquet(parquet_file_path, index=False)
@@ -33,8 +37,23 @@ def load_parquet_to_sqlite(parquet_file_path, db_file_path, table_name):
     except Exception as e:
         print(f"Error loading Parquet file into SQLite: {e}")
 
+def load_xlsx_to_sqlite(xlsx_file_path, db_file_path, table_name):
+    """Loads an XLSX file into a SQLite database."""
+    try:
+        df = pd.read_excel(xlsx_file_path, skiprows=1, header=0)
+        df.columns = df.columns.str.lower().str.replace(' ', '_')
+        df = remove_columns_with_missing_data(df)
+
+        with sqlite3.connect(db_file_path) as conn:
+            df.to_sql(table_name, conn, if_exists='replace', index=False)
+    except Exception as e:
+        print(f"Error loading XLSX file into SQLite: {e}")
+
+
 # Convert CSV to Parquet
 convert_csv_to_parquet(CSV_FILE_PATH, PARQUET_FILE_PATH)
 
 # Load Parquet into SQLite
 load_parquet_to_sqlite(PARQUET_FILE_PATH, DB_FILE_PATH, TABLE_NAME)
+# Load XLSX into SQLite
+load_xlsx_to_sqlite(XLSX_FILE_PATH, DB_FILE_PATH, TABLE_NAME)
