@@ -1,0 +1,8 @@
+streamlit-pills
+streamlit
+SQLAlchemy
+openai
+llama-index
+google-generativeai
+transformers
+torch
