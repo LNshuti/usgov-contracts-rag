@@ -84,7 +84,7 @@ class StreamlitChatPack(BaseLlamaPack):
         @st.cache_resource
         def load_db_llm():
             # Load the SQLite database
-            engine = create_engine("sqlite:///ecommerce_platform1.db")
+            engine = create_engine("sqlite:///gov-contracts.db")
             sql_database = SQLDatabase(engine) #include all tables
 
             # Initialize LLM
@@ -110,7 +110,7 @@ class StreamlitChatPack(BaseLlamaPack):
         # Sidebar selection for tables
         selected_table = st.sidebar.selectbox("Select a Table", table_names)
 
-        db_file = 'ecommerce_platform1.db'
+        db_file = 'gov-contracts.db'
         conn = sqlite3.connect(db_file)
     
         # Display the selected table
