@@ -11,3 +11,5 @@ The simplicity of testing the correctness of the answers makes this application 
 
 ### References. 
 1. Harshad Suryawanshi. From Natural Language to SQL(Na2SQL): Extracting Insights from Databases using OPENAI GPT3.5 and LlamaIndex. https://github.com/AI-ANK/Na2SQL
+
+2. Ravi Theja. Evaluate RAG with Llamaindex. https://cookbook.openai.com/examples/evaluation/evaluate_rag_with_llamaindex
