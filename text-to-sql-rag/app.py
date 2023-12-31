@@ -1,4 +1,5 @@
 import streamlit as st
+from st_aggrid import AgGrid
 from sqlalchemy import create_engine, inspect, text
 from typing import Dict, Any
 
@@ -63,7 +64,7 @@ class StreamlitChatPack(BaseLlamaPack):
             ]
 
         st.title(
-            f"{self.page}💬"
+            f"{self.page}🇺🇸"
         )
         st.info(
             f"Pose any question about the selected table and receive exact SQL queries.",
@@ -118,6 +119,7 @@ class StreamlitChatPack(BaseLlamaPack):
             df = get_table_data(selected_table, conn)
             st.sidebar.text(f"Data for table '{selected_table}':")
             st.sidebar.dataframe(df)
+            #AgGrid(df)
             st.dataframe(df)
     
         # Close the connection
