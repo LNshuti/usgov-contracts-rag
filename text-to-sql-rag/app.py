@@ -120,7 +120,15 @@ class StreamlitChatPack(BaseLlamaPack):
             st.sidebar.text(f"Data for table '{selected_table}':")
             st.sidebar.dataframe(df)
             #AgGrid(df)
-            st.dataframe(df)
+            #st.dataframe(df)
+
+            # Show the column names and their types. Include in main panel and not on sidebar
+            st.markdown("### Table Schema")
+    
+            columns = inspector.get_columns(selected_table)
+            for column in columns:
+                st.markdown(f"**{column['name']}** ({column['type']})")
+            
     
         # Close the connection
         conn.close()
