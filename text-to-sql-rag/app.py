@@ -67,7 +67,7 @@ class StreamlitChatPack(BaseLlamaPack):
         )
         st.info(
             f"Pose any question about the selected table and receive exact SQL queries.",
-            icon="ℹ️",
+            icon="🇺🇸",
         )
 
         def add_to_message_history(role, content):
