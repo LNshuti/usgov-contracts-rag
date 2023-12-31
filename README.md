@@ -7,37 +7,37 @@ The simplicity of testing the correctness of the answers makes this application 
 # Demo 
 https://www.loom.com/share/f292263472ae4e9cbfa813655bc7c654?sid=c3a5bf89-f80f-4d69-bae0-79beee641cbe
 
-# Customize this Application with your own Data
+## Customize this Application with your own Data
 
-## Clone this Repository
+### Clone this Repository
 
 ```bash
 git clone https://github.com/LNshuti/usgov-contracts-rag.git
 ```
 
-## Setup your Environment
+### Setup your Environment
 ```bash
 conda env create -f environment.yml
 ```
 
-## Activate your Environment
+### Activate your Environment
 ```bash
 conda activate gov-data
 ```
 
-## Install Dependencies
+### Install Dependencies
 ```bash 
 pip install -r requirements.txt
 ```
 
-## Add your data in the data folder
+### Add your data in the data folder
 ```bash
 cd data
 
 cp <your_data> .
 ```
 
-## Update path in the connect_db file to load your Excel/CSV data into the database
+### Update path in the connect_db file to load your Excel/CSV data into the database
 
 ```bash
 XLSX_FILE_PATH = 'data/BuyAmericanActExceptionsandWaiversOctober2023.xlsx'
@@ -47,12 +47,12 @@ DB_FILE_PATH = 'gov-contracts.db'
 TABLE_NAME = 'table_name'
 ```
 
-## Run the **connect_db.py** python helper file to load your data into the database
+### Run the **connect_db.py** python helper file to load your data into the database
 ```bash
 python connect_db.py
 ```
 
-## Run the **app.py** python file to start the Streamlit Application
+### Run the **app.py** python file to start the Streamlit Application
 ```bash
 streamlit run text-to-sql-rag/app.py
 ```
