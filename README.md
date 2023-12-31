@@ -37,14 +37,12 @@ cd data
 cp <your_data> .
 ```
 
-### Update path in the connect_db file to load your Excel/CSV data into the database
+### Update path in the connect_db.py file to load your Excel/CSV data into the database
 
 ```bash
-XLSX_FILE_PATH = 'data/BuyAmericanActExceptionsandWaiversOctober2023.xlsx'
-CSV_FILE_PATH = 'data/contract_subset.csv'
-PARQUET_FILE_PATH = 'data/sample_contract_df.parquet'
+CSV_FILE_PATH = 'data/your_data.csv'
 DB_FILE_PATH = 'gov-contracts.db'
-TABLE_NAME = 'table_name'
+TABLE_NAME = 'your_table_name'
 ```
 
 ### Run the **connect_db.py** python helper file to load your data into the database
