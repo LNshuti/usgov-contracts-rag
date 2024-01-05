@@ -1,5 +1,5 @@
 import streamlit as st
-from st_aggrid import AgGrid
+#from st_aggrid import AgGrid
 from sqlalchemy import create_engine, inspect, text
 from typing import Dict, Any
 
