@@ -60,7 +60,7 @@ class StreamlitChatPack(BaseLlamaPack):
 
         if "messages" not in st.session_state:  # Initialize the chat messages history
             st.session_state["messages"] = [
-                {"role": "assistant", "content": f"#### Hello. Ask me anything related to the database."}
+                {"role": "assistant", "content": f"#### Ask a custom question about the data in the database."}
             ]
 
         st.title(
@@ -135,7 +135,7 @@ class StreamlitChatPack(BaseLlamaPack):
             
             # Add streamlit text telling the user to select an example prompt: 
             st.markdown("#### Select From Example Prompts")
-            example_prompts = ["Return the legal business name, the vendor address city, and the dollars obligated where the vendor address country name is RWANDA. Return a table", "Return the top 10 by dollars obligated corresponding to the naics description: IN-VITRO DIAGNOSTIC SUBSTANCE MANUFACTURING . The table should have the legal business name, dollars obligated, and funding agency name. Return the output in a table"]
+            example_prompts = ["Return the legal business name, the vendor address city, and the dollars obligated where the vendor address country name is RWANDA. Return a table", "Return the top 10 by dollars obligated corresponding to the naics description: IN-VITRO DIAGNOSTIC SUBSTANCE MANUFACTURING. Return the legal business name, dollars obligated, and funding agency name. Return a table"]
 
 
             # Layout with four buttons in a row, matching the prompts from the shared image
