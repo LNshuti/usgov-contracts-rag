@@ -60,15 +60,14 @@ class StreamlitChatPack(BaseLlamaPack):
 
         if "messages" not in st.session_state:  # Initialize the chat messages history
             st.session_state["messages"] = [
-                {"role": "assistant", "content": f"Hello. Ask me anything related to the database."}
+                {"role": "assistant", "content": f"#### Hello. Ask me anything related to the database."}
             ]
 
         st.title(
             f"{self.page}🇺🇸"
         )
         st.info(
-            f"Pose any question about the selected table and receive exact SQL queries.",
-            icon="🇺🇸",
+            f"Pose any question about the selected table and receive exact SQL queries."
         )
 
         def add_to_message_history(role, content):
@@ -123,12 +122,42 @@ class StreamlitChatPack(BaseLlamaPack):
             #st.dataframe(df)
 
             # Show the column names and their types. Include in main panel and not on sidebar
-            st.markdown("### Table Schema")
+            st.markdown("#### Table Schema")
     
             columns = inspector.get_columns(selected_table)
-            for column in columns:
-                st.markdown(f"**{column['name']}** ({column['type']})")
+            data = [{"Feature": column['name'], "Data Type": str(column['type'])} for column in columns]
+            df = pd.DataFrame(data)
             
+            st.table(df)
+            # columns = inspector.get_columns(selected_table)
+            # for column in columns:
+            #     st.markdown(f"**{column['name']}** ({column['type']})")
+            
+            # Add streamlit text telling the user to select an example prompt: 
+            st.markdown("#### Select From Example Prompts")
+            example_prompts = ["Return the legal business name, the vendor address city, and the dollars obligated where the vendor address country name is RWANDA. Return a table", "Return the top 10 by dollars obligated corresponding to the naics description: IN-VITRO DIAGNOSTIC SUBSTANCE MANUFACTURING . The table should have the legal business name, dollars obligated, and funding agency name. Return the output in a table"]
+
+
+            # Layout with four buttons in a row, matching the prompts from the shared image
+            #col1, col2, col3, col4 = st.columns(4)
+
+            # with col1:
+            #     st.button("Return the legal business name, and the vendor address city, and the dollars obligated where the vendor address country name is RWANDA. Return a table")
+
+            # with col2:
+            #     styled_button("Tell me a fun fact about the Roman Empire")
+
+            # with col3:
+            #     styled_button("Create a content calendar for a TikTok account")
+
+            # with col4:
+            #     styled_button("Brainstorm names for my fantasy football team with a frog theme")
+            for prompt in example_prompts:
+                if st.button(prompt):
+                    selected_prompt = prompt
+                    break
+            else:
+                selected_prompt = None
     
         # Close the connection
         conn.close()
@@ -166,6 +195,19 @@ class StreamlitChatPack(BaseLlamaPack):
             with st.chat_message("user"):
                 st.write(prompt)
             add_to_message_history("user", prompt)
+
+        if selected_prompt and (not st.session_state["messages"] or st.session_state["messages"][-1]["content"] != selected_prompt):
+            with st.chat_message("user"):
+                st.write(selected_prompt)
+            add_to_message_history("user", selected_prompt)
+
+            with st.spinner():
+                with st.chat_message("assistant"):
+                    response = st.session_state["query_engine"].query("User Question:"+selected_prompt+". ")
+                    sql_query = f"```sql\n{response.metadata['sql_query']}\n```\n**Response:**\n{response.response}\n"
+                    response_container = st.empty()
+                    response_container.write(sql_query)
+                    add_to_message_history("assistant", sql_query)
 
         # If last message is not from assistant, generate a new response
         if st.session_state["messages"][-1]["role"] != "assistant":
