@@ -7,7 +7,7 @@ XLSX_FILE_PATH = 'data/BuyAmericanActExceptionsandWaiversOctober2023.xlsx'
 CSV_FILE_PATH = 'data/contract_subset.csv'
 PARQUET_FILE_PATH = 'data/sample_contract_df.parquet'
 DB_FILE_PATH = 'gov-contracts.db'
-TABLE_NAME = 'table_name'
+TABLE_NAME = 'BuyAmericanActExceptionsandWaiversOct2023'
 
 
 def remove_columns_with_missing_data(df, threshold=0.05):
