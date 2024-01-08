@@ -1,5 +1,5 @@
 import streamlit as st
-import pyperclip
+#import pyperclip
 
 #from st_aggrid import AgGrid
 from sqlalchemy import create_engine, inspect, text
@@ -50,7 +50,7 @@ class StreamlitChatPack(BaseLlamaPack):
         return {}
     
     def copy_prompt_to_clipboard(self, prompt):
-        pyperclip.copy(prompt)
+        #pyperclip.copy(prompt)
         st.success("Copied to clipboard!")
 
     def run(self, *args: Any, **kwargs: Any) -> Any:
