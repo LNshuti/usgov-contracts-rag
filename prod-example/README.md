@@ -1,5 +1,9 @@
 ## Once deployment is complete, you can access the application using the following URL:
 
+[Modal Deployment](https://lnshuti--usgov-contracts-rag-run.modal.run/)
+
+## Architecture 
+
 
 ## How to create a pull request after this change
 
