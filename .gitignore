@@ -3,3 +3,4 @@ data/BuyAme*
 data/sample_contract_df.parquet
 __az*
 prod-example/modal_example.py # Ignore example for now. Add later
+text-to-sql-rag/serve_w_modal.py # Ignore example for now. Add later

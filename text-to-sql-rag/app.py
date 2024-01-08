@@ -1,4 +1,6 @@
 import streamlit as st
+import pyperclip
+
 #from st_aggrid import AgGrid
 from sqlalchemy import create_engine, inspect, text
 from typing import Dict, Any
@@ -46,6 +48,10 @@ class StreamlitChatPack(BaseLlamaPack):
     def get_modules(self) -> Dict[str, Any]:
         """Get modules."""
         return {}
+    
+    def copy_prompt_to_clipboard(self, prompt):
+        pyperclip.copy(prompt)
+        st.success("Copied to clipboard!")
 
     def run(self, *args: Any, **kwargs: Any) -> Any:
         """Run the pipeline."""
@@ -135,7 +141,7 @@ class StreamlitChatPack(BaseLlamaPack):
             
             # Add streamlit text telling the user to select an example prompt: 
             st.markdown("#### Select From Example Prompts")
-            example_prompts = ["Return the legal business name, the vendor address city, and the dollars obligated where the vendor address country name is RWANDA. Return a table", "Return the top 10 by dollars obligated corresponding to the naics description: IN-VITRO DIAGNOSTIC SUBSTANCE MANUFACTURING. Return the legal business name, dollars obligated, and funding agency name. Return a table"]
+            example_prompts = ["Return the legal business name, the vendor address city, and the dollars obligated where the vendor address country name is RWANDA. Return a table", "Return the top 10 by dollars obligated corresponding to the naics description: IN-VITRO DIAGNOSTIC SUBSTANCE MANUFACTURING. Return the legal business name, dollars obligated, and funding agency name. Return a table", "Return the legal business name, the number of distinct piid, the sum of dollars obligated and the percentage of dollars obligated grouped by legal business name. Return the top 20, with everyone else categorized as others"]
 
 
             # Layout with four buttons in a row, matching the prompts from the shared image

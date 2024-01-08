@@ -17,7 +17,7 @@ git clone https://github.com/LNshuti/usgov-contracts-rag.git
 
 ### Setup your Environment
 ```bash
-conda env create --file=environment.yml
+conda env create --file=environment.yaml
 ```
 
 ### Activate your Environment
