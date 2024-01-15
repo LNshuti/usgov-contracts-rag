@@ -1,5 +1,5 @@
 import streamlit as st
-#import pyperclip
+import pyperclip
 
 #from st_aggrid import AgGrid
 from sqlalchemy import create_engine, inspect, text
@@ -50,7 +50,7 @@ class StreamlitChatPack(BaseLlamaPack):
         return {}
     
     def copy_prompt_to_clipboard(self, prompt):
-        #pyperclip.copy(prompt)
+        pyperclip.copy(prompt)
         st.success("Copied to clipboard!")
 
     def run(self, *args: Any, **kwargs: Any) -> Any:
@@ -212,6 +212,12 @@ class StreamlitChatPack(BaseLlamaPack):
                     response = st.session_state["query_engine"].query("User Question:"+selected_prompt+". ")
                     sql_query = f"```sql\n{response.metadata['sql_query']}\n```\n**Response:**\n{response.response}\n"
                     response_container = st.empty()
+                    # Add copy to clipboard functionality
+                    copy_button = st.button("Copy", key="copy_user")
+                    if copy_button:
+                        st.session_state["clipboard_content"] = sql_query
+                        st.experimental_set_query_params(clipboard=st.session_state["clipboard_content"])
+                        st.success("Copied to clipboard!")
                     response_container.write(sql_query)
                     add_to_message_history("assistant", sql_query)
 
@@ -222,8 +228,13 @@ class StreamlitChatPack(BaseLlamaPack):
                     response = st.session_state["query_engine"].query("User Question:"+prompt+". ")
                     sql_query = f"```sql\n{response.metadata['sql_query']}\n```\n**Response:**\n{response.response}\n"
                     response_container = st.empty()
+                    # Add copy to clipboard functionality
+                    copy_button = st.button("Copy", key="copy_assistant")
+                    if copy_button:
+                        st.session_state["clipboard_content"] = sql_query
+                        st.experimental_set_query_params(clipboard=st.session_state["clipboard_content"])
+                        st.success("Copied to clipboard!")
                     response_container.write(sql_query)
-                    # st.write(response.response)
                     add_to_message_history("assistant", sql_query)
 
 if __name__ == "__main__":
