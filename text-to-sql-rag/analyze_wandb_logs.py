@@ -1,7 +1,6 @@
 import os
 import re
 
-# Function to parse the wandb log file and extract relevant data
 def parse_wandb_logs(log_directory):
     log_files = [f for f in os.listdir(log_directory) if f.startswith("run")]
     data = []
@@ -9,16 +8,18 @@ def parse_wandb_logs(log_directory):
     for log_file in log_files:
         with open(os.path.join(log_directory, log_file), 'r', errors='ignore') as file:
             for line in file:
-                # Extracting 'selected_table' entries
                 if "selected_table" in line:
                     match = re.search(r"selected_table (.+)", line)
                     if match:
                         data.append(match.group(1))
     return data
 
-# Specify the directory where wandb stores its log files
-log_directory = '../wandb/latest-run/'  # Replace with your log directory path
+def main():
+    # Specify the directory where wandb stores its log files
+    log_directory = '../wandb/latest-run/'  
 
-# Call the function and print the results
-selected_tables = parse_wandb_logs(log_directory)
-print("Selected Tables:", selected_tables)
+    selected_tables = parse_wandb_logs(log_directory)
+    print("Selected Tables:", selected_tables)
+
+if __name__ == "__main__":
+    main()
