@@ -1,5 +1,6 @@
 import streamlit as st
 import pyperclip
+import wandb 
 
 #from st_aggrid import AgGrid
 from sqlalchemy import create_engine, inspect, text
@@ -56,6 +57,9 @@ class StreamlitChatPack(BaseLlamaPack):
     def run(self, *args: Any, **kwargs: Any) -> Any:
         """Run the pipeline."""
         import streamlit as st
+        # Initialize Weights & Biases
+        wandb.init(project='streamlit-chat-app', entity='leoncen0-iga')
+
 
         st.set_page_config(
             page_title=f"{self.page}",
@@ -121,6 +125,8 @@ class StreamlitChatPack(BaseLlamaPack):
     
         # Display the selected table
         if selected_table:
+            # Log the table selection event
+            wandb.log({"selected_table": selected_table})
             df = get_table_data(selected_table, conn)
             st.sidebar.text(f"Data for table '{selected_table}':")
             st.sidebar.dataframe(df)
@@ -161,6 +167,8 @@ class StreamlitChatPack(BaseLlamaPack):
             for prompt in example_prompts:
                 if st.button(prompt):
                     selected_prompt = prompt
+                    # Log the selected prompt
+                    wandb.log({"selected_prompt": prompt})
                     break
             else:
                 selected_prompt = None
@@ -198,6 +206,8 @@ class StreamlitChatPack(BaseLlamaPack):
         if prompt := st.chat_input(
             "Enter your natural language query about the database"
         ):  # Prompt for user input and save to chat history
+             # Log the user query
+            wandb.log({"user_query": prompt})
             with st.chat_message("user"):
                 st.write(prompt)
             add_to_message_history("user", prompt)
