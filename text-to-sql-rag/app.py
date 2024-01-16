@@ -246,6 +246,7 @@ class StreamlitChatPack(BaseLlamaPack):
                         st.success("Copied to clipboard!")
                     response_container.write(sql_query)
                     add_to_message_history("assistant", sql_query)
-
+    wandb.finish()
+    
 if __name__ == "__main__":
     StreamlitChatPack(run_from_main=True).run()
