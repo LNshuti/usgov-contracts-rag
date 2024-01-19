@@ -50,6 +50,12 @@ def load_xlsx_to_sqlite(xlsx_file_path, db_file_path, table_name):
         print(f"Error loading XLSX file into SQLite: {e}")
 
 
+# Clear all data from SQLite database
+DB_FILE_PATH = 'gov-contracts.db'
+
+with sqlite3.connect(DB_FILE_PATH) as conn:
+    conn.execute("DELETE FROM ContractOpportunitiesFull")
+
 # Convert CSV to Parquet
 convert_csv_to_parquet(CSV_FILE_PATH, PARQUET_FILE_PATH)
 
