@@ -72,6 +72,6 @@ print(df.columns)
 convert_csv_to_parquet(CSV_FILE_PATH, PARQUET_FILE_PATH)
 
 # Load Parquet into SQLite
-load_parquet_to_sqlite(PARQUET_FILE_PATH, DB_FILE_PATH, TABLE_NAME)
+#load_parquet_to_sqlite(PARQUET_FILE_PATH, DB_FILE_PATH, TABLE_NAME)
 # Load XLSX into SQLite
-#load_xlsx_to_sqlite(XLSX_FILE_PATH, DB_FILE_PATH, TABLE_NAME)
+load_xlsx_to_sqlite(XLSX_FILE_PATH, DB_FILE_PATH, TABLE_NAME)
