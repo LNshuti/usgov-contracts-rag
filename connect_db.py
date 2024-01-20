@@ -10,7 +10,7 @@ DB_FILE_PATH = 'gov-contracts.db'
 TABLE_NAME = 'ContractOpportunitiesFull'
 
 
-def remove_columns_with_missing_data(df, threshold=0.05):
+def remove_columns_with_missing_data(df, threshold=0.5):
     """Removes columns from a DataFrame if they are missing more than a certain percentage of their observations."""
     missing_data_ratio = df.isnull().sum() / len(df)
     columns_to_keep = missing_data_ratio[missing_data_ratio <= threshold].index
@@ -21,8 +21,13 @@ def convert_csv_to_parquet(csv_file_path, parquet_file_path):
     try:
         df = pd.read_csv(csv_file_path, encoding='ISO-8859-1')
         df['Award$'] = pd.to_numeric(df['Award$'], errors='coerce')
-        df.columns = df.columns.str.lower().str.replace(' ', '_')
-        df = remove_columns_with_missing_data(df)
+        df.columns = df.columns.str.lower().str.replace(' ', '_').str.replace('.', '_').str.replace('/', '_').str.replace('-', '_').str.replace('#', '').str.replace('$', '')
+        df = df[['department_ind_agency', 'cgac', 'sub_tier',
+                'fpds_code', 'office', 'aac_code', 'posteddate', 'type', 'basetype',
+                'popstreetaddress', 'popcity', 'popstate', 'popzip', 'popcountry',
+                'active', 'awardnumber', 'awarddate', 'award', 'awardee',
+                'state', 'city', 'zipcode', 'countrycode']]
+        #df = remove_columns_with_missing_data(df)
 
         df.to_parquet(parquet_file_path, index=False)
     except Exception as e:
@@ -51,15 +56,22 @@ def load_xlsx_to_sqlite(xlsx_file_path, db_file_path, table_name):
 
 
 # Clear all data from SQLite database
-DB_FILE_PATH = 'gov-contracts.db'
-
 # with sqlite3.connect(DB_FILE_PATH) as conn:
 #     conn.execute("DELETE FROM ContractOpportunitiesFull")
 
 # Convert CSV to Parquet
+# Load the file from CSV_FILE_PATH and show a simple summary statistics 
+df = pd.read_csv(CSV_FILE_PATH, encoding='ISO-8859-1')
+df['Award$'] = pd.to_numeric(df['Award$'], errors='coerce')
+df.columns = df.columns.str.lower().str.replace(' ', '_').str.replace('.', '_').str.replace('/', '_').str.replace('-', '_').str.replace('#', '')
+# Convert posteddate from datetime to date 
+
+#df = remove_columns_with_missing_data(df)
+print(df.columns)
+
 convert_csv_to_parquet(CSV_FILE_PATH, PARQUET_FILE_PATH)
 
 # Load Parquet into SQLite
-#load_parquet_to_sqlite(PARQUET_FILE_PATH, DB_FILE_PATH, TABLE_NAME)
+load_parquet_to_sqlite(PARQUET_FILE_PATH, DB_FILE_PATH, TABLE_NAME)
 # Load XLSX into SQLite
 #load_xlsx_to_sqlite(XLSX_FILE_PATH, DB_FILE_PATH, TABLE_NAME)
