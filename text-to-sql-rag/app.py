@@ -196,10 +196,10 @@ class StreamlitChatPack(BaseLlamaPack):
                 st.write(prompt)
             add_to_message_history("user", prompt)
 
-        # if selected_prompt and (not st.session_state["messages"] or st.session_state["messages"][-1]["content"] != selected_prompt):
-        #     with st.chat_message("user"):
-        #         st.write(selected_prompt)
-        #         add_to_message_history("user", selected_prompt)
+        if selected_prompt and (not st.session_state["messages"] or st.session_state["messages"][-1]["content"] != selected_prompt):
+            with st.chat_message("user"):
+                st.write(selected_prompt)
+                add_to_message_history("user", selected_prompt)
 
             with st.spinner():
                 with st.chat_message("assistant"):
