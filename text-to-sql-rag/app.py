@@ -98,7 +98,6 @@ class StreamlitChatPack(BaseLlamaPack):
             sql_database = SQLDatabase(engine) #include all tables
 
             # Initialize LLM
-            #llm2 = PaLM(api_key=os.environ["GOOGLE_API_KEY"])  # Replace with your API key
             llm2 = OpenAI(temperature=0.1, model="gpt-3.5-turbo-1106")
 
             service_context = ServiceContext.from_defaults(llm=llm2, embed_model="local")
@@ -149,21 +148,6 @@ class StreamlitChatPack(BaseLlamaPack):
             st.markdown("#### Select From Example Prompts")
             example_prompts = ["Return the legal business name, the vendor address city, and the dollars obligated where the vendor address country name is RWANDA. Return a table", "Return the top 10 by dollars obligated corresponding to the naics description: IN-VITRO DIAGNOSTIC SUBSTANCE MANUFACTURING. Return the legal business name, dollars obligated, and funding agency name. Return a table", "Return the legal business name, the number of distinct piid, the sum of dollars obligated and the percentage of dollars obligated grouped by legal business name. Return the top 20, with everyone else categorized as others"]
 
-
-            # Layout with four buttons in a row, matching the prompts from the shared image
-            #col1, col2, col3, col4 = st.columns(4)
-
-            # with col1:
-            #     st.button("Return the legal business name, and the vendor address city, and the dollars obligated where the vendor address country name is RWANDA. Return a table")
-
-            # with col2:
-            #     styled_button("Tell me a fun fact about the Roman Empire")
-
-            # with col3:
-            #     styled_button("Create a content calendar for a TikTok account")
-
-            # with col4:
-            #     styled_button("Brainstorm names for my fantasy football team with a frog theme")
             for prompt in example_prompts:
                 if st.button(prompt):
                     selected_prompt = prompt
@@ -212,10 +196,10 @@ class StreamlitChatPack(BaseLlamaPack):
                 st.write(prompt)
             add_to_message_history("user", prompt)
 
-        if selected_prompt and (not st.session_state["messages"] or st.session_state["messages"][-1]["content"] != selected_prompt):
-            with st.chat_message("user"):
-                st.write(selected_prompt)
-            add_to_message_history("user", selected_prompt)
+        # if selected_prompt and (not st.session_state["messages"] or st.session_state["messages"][-1]["content"] != selected_prompt):
+        #     with st.chat_message("user"):
+        #         st.write(selected_prompt)
+        #         add_to_message_history("user", selected_prompt)
 
             with st.spinner():
                 with st.chat_message("assistant"):
