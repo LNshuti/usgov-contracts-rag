@@ -146,7 +146,7 @@ class StreamlitChatPack(BaseLlamaPack):
             
             # Add streamlit text telling the user to select an example prompt: 
             st.markdown("#### Select From Example Prompts")
-            example_prompts = ["Return the legal business name, the vendor address city, and the dollars obligated where the vendor address country name is MEXICO. Return a table including a total of dollars obligated"]
+            example_prompts = ["Return the department_ind_agency and the sum of award in descending order limited to the top 10"]
 
             for prompt in example_prompts:
                 if st.button(prompt):
