@@ -56,8 +56,8 @@ def load_xlsx_to_sqlite(xlsx_file_path, db_file_path, table_name):
 
 
 # Clear all data from SQLite database
-with sqlite3.connect(DB_FILE_PATH) as conn:
-    conn.execute("DELETE FROM ContractOpportunitiesFull")
+# with sqlite3.connect(DB_FILE_PATH) as conn:
+#     conn.execute("DELETE FROM ContractOpportunitiesFull")
 
 # Convert CSV to Parquet
 # Load the file from CSV_FILE_PATH and show a simple summary statistics 
@@ -72,6 +72,6 @@ print(df.columns)
 convert_csv_to_parquet(CSV_FILE_PATH, PARQUET_FILE_PATH)
 
 # Load Parquet into SQLite
-#load_parquet_to_sqlite(PARQUET_FILE_PATH, DB_FILE_PATH, TABLE_NAME)
+load_parquet_to_sqlite(PARQUET_FILE_PATH, DB_FILE_PATH, TABLE_NAME)
 # Load XLSX into SQLite
-load_xlsx_to_sqlite(XLSX_FILE_PATH, DB_FILE_PATH, TABLE_NAME)
+#load_xlsx_to_sqlite(XLSX_FILE_PATH, DB_FILE_PATH, TABLE_NAME)
