@@ -147,7 +147,8 @@ class StreamlitChatPack(BaseLlamaPack):
             # Add streamlit text telling the user to select an example prompt: 
             st.markdown("#### Select From Example Prompts")
             example_prompts = ["Return the department_ind_agency and the sum of award in descending order", 
-                               "Return the sum of award in descending order grouped by type limited to the top 10"]
+                               "Return the sum of award in descending order grouped by type limited to the top 10", 
+                               "Return the sum of award by year where the sub_tier is the FEDERAL ACQUISITION SERVICE"]
 
             for prompt in example_prompts:
                 if st.button(prompt):
