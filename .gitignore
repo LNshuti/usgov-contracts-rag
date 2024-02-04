@@ -5,6 +5,7 @@ __az*
 prod-example* # Ignore prod example folder for now. Add later
 text-to-sql-rag/serve_w_modal.py # Ignore example for now. Add laterprod-example/stacks/
 prod-example/stacks/
+prod-example/
 wandb/
 data/ContractOpportunitiesFull.csv
 awards_by_contractor_type.numbers
