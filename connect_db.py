@@ -29,6 +29,9 @@ def convert_csv_to_parquet(csv_file_path, parquet_file_path):
                 'state', 'city', 'zipcode', 'countrycode']]
         #df = remove_columns_with_missing_data(df)
 
+        # department_ind_agency: Replace ", DEPARTMENT OF" with ""
+        
+
         df.to_parquet(parquet_file_path, index=False)
     except Exception as e:
         print(f"Error converting CSV to Parquet: {e}")

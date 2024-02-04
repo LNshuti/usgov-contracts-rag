@@ -1,0 +1,20 @@
+name: 'usgovdata'
+version: '1.0.0'
+
+profile: 'usgovdata'
+
+source-paths: ["models"]
+analysis-paths: ["analysis"]
+test-paths: ["tests"]
+data-paths: ["data"]
+macro-paths: ["macros"]
+
+target-path: "target"  # directory to store compiled SQL files
+clean-targets:         # directories to be removed by `dbt clean`
+    - "target"
+    - "dbt_modules"
+
+models:
+  usgovdata:
+    enabled: true
+    materialized: view

@@ -1,0 +1,228 @@
+[0m13:01:24.158926 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105c2f1f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1083e2580>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1083e26a0>]}
+
+
+============================== 13:01:24.161346 | 5593117c-fbab-47ea-96d9-e010bdd278e5 ==============================
+[0m13:01:24.161346 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:01:24.161682 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'profiles_dir': '/Users/lnshuti/.dbt', 'log_path': 'logs', 'version_check': 'True', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'static_parser': 'True', 'invocation_command': 'dbt init', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m13:01:24.161993 [warn ] [MainThread]: [ConfigFolderDirectory]: Unable to parse dict {'dir': PosixPath('/Users/lnshuti/.dbt')}
+[0m13:01:24.162184 [info ] [MainThread]: Creating dbt configuration folder at 
+[0m13:01:29.819549 [debug] [MainThread]: Starter project path: /Users/lnshuti/anaconda3/envs/gov-data/lib/python3.9/site-packages/dbt/include/starter_project
+[0m13:01:29.831212 [info ] [MainThread]: 
+Your new dbt project "govdata" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m13:01:29.832011 [info ] [MainThread]: Setting up your profile.
+[0m13:10:23.228370 [info ] [MainThread]: Profile govdata written to /Users/lnshuti/.dbt/profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m13:10:23.307262 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 539.16364, "process_user_time": 3.484457, "process_kernel_time": 0.309295, "process_mem_max_rss": "168542208", "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:10:23.309124 [debug] [MainThread]: Command `dbt init` succeeded at 13:10:23.308772 after 539.17 seconds
+[0m13:10:23.310141 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105c2f1f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x14b1bcdc0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1083e26a0>]}
+[0m13:10:23.311347 [debug] [MainThread]: Flushing usage events
+[0m13:10:40.801634 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1074b9ac0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109f88760>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109fbe790>]}
+
+
+============================== 13:10:40.804215 | bf9a186e-01d5-4e5d-b811-6e4bab9eaadc ==============================
+[0m13:10:40.804215 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:10:40.804541 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/lnshuti/.dbt', 'fail_fast': 'False', 'debug': 'False', 'log_path': 'logs', 'version_check': 'True', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt run', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m13:10:40.804936 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /Users/lnshuti/Desktop/portfolio/usgov-contracts-rag/prod-example/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m13:10:40.806469 [debug] [MainThread]: Resource report: {"command_name": "run", "command_wall_clock_time": 0.04131, "process_user_time": 0.924027, "process_kernel_time": 0.116078, "process_mem_max_rss": "103612416", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:10:40.806837 [debug] [MainThread]: Command `dbt run` failed at 13:10:40.806763 after 0.04 seconds
+[0m13:10:40.807034 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1074b9ac0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109f9c3d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109fbe790>]}
+[0m13:10:40.807231 [debug] [MainThread]: Flushing usage events
+[0m13:13:26.689834 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104cc2eb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107188760>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1071b54c0>]}
+
+
+============================== 13:13:26.692388 | d5b12713-202a-49f6-a4c8-142fef436d34 ==============================
+[0m13:13:26.692388 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:13:26.692732 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'fail_fast': 'False', 'log_path': 'logs', 'version_check': 'True', 'profiles_dir': '/Users/lnshuti/.dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt run', 'introspect': 'True', 'static_parser': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m13:13:26.693055 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /Users/lnshuti/Desktop/portfolio/usgov-contracts-rag/prod-example/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m13:13:26.694578 [debug] [MainThread]: Resource report: {"command_name": "run", "command_wall_clock_time": 0.03819571, "process_user_time": 0.920105, "process_kernel_time": 0.117185, "process_mem_max_rss": "103792640", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:13:26.694910 [debug] [MainThread]: Command `dbt run` failed at 13:13:26.694835 after 0.04 seconds
+[0m13:13:26.695101 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104cc2eb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10719cd60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1071b54c0>]}
+[0m13:13:26.695284 [debug] [MainThread]: Flushing usage events
+[0m13:13:36.254156 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104c74400>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10701f730>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10702b100>]}
+
+
+============================== 13:13:36.256732 | 930b38da-c8f6-4344-aedb-211ac52abe64 ==============================
+[0m13:13:36.256732 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:13:36.257060 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'profiles_dir': '/Users/lnshuti/.dbt', 'log_path': 'logs', 'debug': 'False', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'static_parser': 'True', 'invocation_command': 'dbt init', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m13:13:58.099809 [info ] [MainThread]: A project called govdata already exists here.
+[0m13:13:58.105457 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 21.87676, "process_user_time": 0.9248, "process_kernel_time": 0.089797, "process_mem_max_rss": "104775680", "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:13:58.107082 [debug] [MainThread]: Command `dbt init` succeeded at 13:13:58.106826 after 21.88 seconds
+[0m13:13:58.107852 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104c74400>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106ffbca0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106fee100>]}
+[0m13:13:58.108530 [debug] [MainThread]: Flushing usage events
+[0m13:14:38.440821 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104cebac0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107079760>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1070a6910>]}
+
+
+============================== 13:14:38.443441 | b96ea282-ea07-4b5d-a0e2-b395b45b1b91 ==============================
+[0m13:14:38.443441 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:14:38.443773 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/lnshuti/.dbt', 'version_check': 'True', 'warn_error': 'None', 'log_path': 'logs', 'debug': 'False', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt test', 'introspect': 'True', 'static_parser': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m13:14:38.444106 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /Users/lnshuti/Desktop/portfolio/usgov-contracts-rag/prod-example/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m13:14:38.445502 [debug] [MainThread]: Resource report: {"command_name": "test", "command_wall_clock_time": 0.038472876, "process_user_time": 0.920383, "process_kernel_time": 0.111928, "process_mem_max_rss": "103907328", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:14:38.445819 [debug] [MainThread]: Command `dbt test` failed at 13:14:38.445747 after 0.04 seconds
+[0m13:14:38.446006 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104cebac0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10708d790>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1070a6910>]}
+[0m13:14:38.446228 [debug] [MainThread]: Flushing usage events
+[0m13:15:19.129324 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x102aa0400>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104e1a250>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104e4b6a0>]}
+
+
+============================== 13:15:19.131837 | d8d611a7-41a3-4c68-9131-4cadd320904e ==============================
+[0m13:15:19.131837 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:15:19.132153 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'debug': 'False', 'log_path': 'logs', 'profiles_dir': '/Users/lnshuti/.dbt', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'introspect': 'True', 'log_format': 'default', 'target_path': 'None', 'invocation_command': 'dbt init', 'send_anonymous_usage_stats': 'True'}
+[0m13:15:24.280135 [debug] [MainThread]: Starter project path: /Users/lnshuti/anaconda3/envs/gov-data/lib/python3.9/site-packages/dbt/include/starter_project
+[0m13:15:24.293896 [info ] [MainThread]: 
+Your new dbt project "usgovdata" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m13:15:24.294592 [info ] [MainThread]: Setting up your profile.
+[0m13:17:53.149800 [info ] [MainThread]: Profile usgovdata written to /Users/lnshuti/.dbt/profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m13:17:53.154947 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 154.05594, "process_user_time": 3.254063, "process_kernel_time": 0.256068, "process_mem_max_rss": "169410560", "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:17:53.155896 [debug] [MainThread]: Command `dbt init` succeeded at 13:17:53.155681 after 154.06 seconds
+[0m13:17:53.157157 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x102aa0400>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104e02730>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104e33a30>]}
+[0m13:17:53.157622 [debug] [MainThread]: Flushing usage events
+[0m13:18:05.162289 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104e43eb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1071c06a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107206400>]}
+
+
+============================== 13:18:05.164883 | c6487826-dbc6-47e7-bcf2-d5021afd8eec ==============================
+[0m13:18:05.164883 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:18:05.165238 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/lnshuti/.dbt', 'debug': 'False', 'fail_fast': 'False', 'log_path': 'logs', 'version_check': 'True', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'introspect': 'True', 'invocation_command': 'dbt debug', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m13:18:05.167008 [info ] [MainThread]: dbt version: 1.7.7
+[0m13:18:05.167211 [info ] [MainThread]: python version: 3.9.18
+[0m13:18:05.167384 [info ] [MainThread]: python path: /Users/lnshuti/anaconda3/envs/gov-data/bin/python
+[0m13:18:05.167550 [info ] [MainThread]: os info: macOS-13.5.2-arm64-arm-64bit
+[0m13:18:05.894065 [info ] [MainThread]: Using profiles dir at /Users/lnshuti/.dbt
+[0m13:18:05.894400 [info ] [MainThread]: Using profiles.yml file at /Users/lnshuti/.dbt/profiles.yml
+[0m13:18:05.894600 [info ] [MainThread]: Using dbt_project.yml file at /Users/lnshuti/Desktop/portfolio/usgov-contracts-rag/prod-example/dbt_project.yml
+[0m13:18:05.894832 [error] [MainThread]: Encountered an error:
+Internal Error
+  Profile should not be None if loading profile completed
+[0m13:18:05.896509 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_wall_clock_time": 0.76582086, "process_user_time": 3.222121, "process_kernel_time": 0.232426, "process_mem_max_rss": "174424064", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:18:05.896844 [debug] [MainThread]: Command `dbt debug` failed at 13:18:05.896768 after 0.77 seconds
+[0m13:18:05.897063 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104e43eb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106854f40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x137e2a580>]}
+[0m13:18:05.897279 [debug] [MainThread]: Flushing usage events
+[0m13:18:21.156770 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106ccc400>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1114c27f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1114ac100>]}
+
+
+============================== 13:18:21.159193 | c58a0b4b-d809-48e1-8d8b-e6064a8895c0 ==============================
+[0m13:18:21.159193 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:18:21.159520 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/lnshuti/.dbt', 'debug': 'False', 'warn_error': 'None', 'log_path': 'logs', 'fail_fast': 'False', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'target_path': 'None', 'invocation_command': 'dbt test', 'send_anonymous_usage_stats': 'True'}
+[0m13:18:21.159846 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /Users/lnshuti/Desktop/portfolio/usgov-contracts-rag/prod-example/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m13:18:21.161242 [debug] [MainThread]: Resource report: {"command_name": "test", "command_wall_clock_time": 0.029288083, "process_user_time": 0.915203, "process_kernel_time": 0.096862, "process_mem_max_rss": "103776256", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:18:21.161619 [debug] [MainThread]: Command `dbt test` failed at 13:18:21.161535 after 0.03 seconds
+[0m13:18:21.161871 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106ccc400>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1114627f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1114acb50>]}
+[0m13:18:21.162071 [debug] [MainThread]: Flushing usage events
+[0m13:18:26.200767 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104c22ac0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106fb0370>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106fde910>]}
+
+
+============================== 13:18:26.203005 | d7f738bb-c679-408f-844f-db5d5525d60e ==============================
+[0m13:18:26.203005 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:18:26.203312 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/lnshuti/.dbt', 'debug': 'False', 'version_check': 'True', 'log_path': 'logs', 'fail_fast': 'False', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'static_parser': 'True', 'invocation_command': 'dbt run', 'introspect': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m13:18:26.203646 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /Users/lnshuti/Desktop/portfolio/usgov-contracts-rag/prod-example/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m13:18:26.204640 [debug] [MainThread]: Resource report: {"command_name": "run", "command_wall_clock_time": 0.02819875, "process_user_time": 0.91658, "process_kernel_time": 0.079801, "process_mem_max_rss": "103858176", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:18:26.204970 [debug] [MainThread]: Command `dbt run` failed at 13:18:26.204891 after 0.03 seconds
+[0m13:18:26.205170 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104c22ac0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106fc5d30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106fde910>]}
+[0m13:18:26.205377 [debug] [MainThread]: Flushing usage events
+[0m13:19:34.918934 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1060c6eb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111c83760>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111cb14c0>]}
+
+
+============================== 13:19:34.921481 | 4dbf7957-97ca-46e5-b813-125e83168980 ==============================
+[0m13:19:34.921481 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:19:34.921800 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/lnshuti/.dbt', 'fail_fast': 'False', 'debug': 'False', 'log_path': 'logs', 'version_check': 'True', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'invocation_command': 'dbt run', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m13:19:34.922157 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /Users/lnshuti/Desktop/portfolio/usgov-contracts-rag/prod-example/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m13:19:34.923624 [debug] [MainThread]: Resource report: {"command_name": "run", "command_wall_clock_time": 0.03715604, "process_user_time": 0.940289, "process_kernel_time": 0.121372, "process_mem_max_rss": "104808448", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:19:34.923973 [debug] [MainThread]: Command `dbt run` failed at 13:19:34.923897 after 0.04 seconds
+[0m13:19:34.924170 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1060c6eb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111c98d60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111cb14c0>]}
+[0m13:19:34.924358 [debug] [MainThread]: Flushing usage events
+[0m13:20:58.612890 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10320beb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1055982b0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1055c54c0>]}
+
+
+============================== 13:20:58.615512 | 8b6c9bf5-533b-455a-baa7-4471fe4cdab5 ==============================
+[0m13:20:58.615512 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:20:58.615849 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'version_check': 'True', 'log_path': '/Users/lnshuti/Desktop/portfolio/usgov-contracts-rag/prod-example/logs', 'profiles_dir': '/Users/lnshuti/.dbt', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'introspect': 'True', 'invocation_command': 'dbt run', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m13:20:58.617949 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Could not find profile named 'dev'
+[0m13:20:58.619734 [debug] [MainThread]: Resource report: {"command_name": "run", "command_wall_clock_time": 0.040073626, "process_user_time": 0.929484, "process_kernel_time": 0.116674, "process_mem_max_rss": "104087552", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:20:58.620118 [debug] [MainThread]: Command `dbt run` failed at 13:20:58.620037 after 0.04 seconds
+[0m13:20:58.620326 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10320beb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10563af70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10563a580>]}
+[0m13:20:58.620527 [debug] [MainThread]: Flushing usage events
+[0m13:21:21.447946 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x102cbeeb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10504c2b0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1050794c0>]}
+
+
+============================== 13:21:21.450437 | dcce45e9-ba96-4c84-a966-5d9cf4efe70d ==============================
+[0m13:21:21.450437 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:21:21.450801 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/lnshuti/.dbt', 'debug': 'False', 'version_check': 'True', 'log_path': '/Users/lnshuti/Desktop/portfolio/usgov-contracts-rag/prod-example/logs', 'fail_fast': 'False', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'invocation_command': 'dbt run', 'static_parser': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m13:21:22.187542 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `source-paths` config has been renamed to `model-paths`. Please update your
+`dbt_project.yml` configuration to reflect this change.
+[0m13:21:22.187871 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': 'dcce45e9-ba96-4c84-a966-5d9cf4efe70d', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12fce0370>]}
+[0m13:21:22.188120 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `data-paths` config has been renamed to `seed-paths`. Please update your
+`dbt_project.yml` configuration to reflect this change.
+[0m13:21:22.188326 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': 'dcce45e9-ba96-4c84-a966-5d9cf4efe70d', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12fce03a0>]}
+[0m13:21:22.278923 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'dcce45e9-ba96-4c84-a966-5d9cf4efe70d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1050794c0>]}
+[0m13:21:22.316219 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'dcce45e9-ba96-4c84-a966-5d9cf4efe70d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12ff22820>]}
+[0m13:21:22.316766 [info ] [MainThread]: Registered adapter: snowflake=1.7.1
+[0m13:21:22.387998 [debug] [MainThread]: checksum: 54188551c516f4dd1c42b8d9c289f2bf49f18ae42632e2ba36a64ad29fd60da4, vars: {}, profile: , target: , version: 1.7.7
+[0m13:21:22.388530 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m13:21:22.388797 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': 'dcce45e9-ba96-4c84-a966-5d9cf4efe70d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12fee2490>]}
+[0m13:21:22.740582 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.usgovdata
+[0m13:21:22.743083 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'dcce45e9-ba96-4c84-a966-5d9cf4efe70d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x13812e940>]}
+[0m13:21:22.746843 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'dcce45e9-ba96-4c84-a966-5d9cf4efe70d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x13812e910>]}
+[0m13:21:22.747114 [info ] [MainThread]: Found 0 sources, 0 exposures, 0 metrics, 430 macros, 0 groups, 0 semantic models
+[0m13:21:22.747332 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'dcce45e9-ba96-4c84-a966-5d9cf4efe70d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12ff22400>]}
+[0m13:21:22.748062 [info ] [MainThread]: 
+[0m13:21:22.748340 [warn ] [MainThread]: Nothing to do. Try checking your model configs and model specification args
+[0m13:21:22.748831 [debug] [MainThread]: Command end result
+[0m13:21:22.756056 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 1.3352584, "process_user_time": 3.622915, "process_kernel_time": 0.26244, "process_mem_max_rss": "180486144", "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:21:22.756544 [debug] [MainThread]: Command `dbt run` succeeded at 13:21:22.756448 after 1.34 seconds
+[0m13:21:22.756832 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x102cbeeb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12fcb3f10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12fcc1430>]}
+[0m13:21:22.757051 [debug] [MainThread]: Flushing usage events
