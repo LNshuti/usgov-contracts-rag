@@ -1,12 +1,15 @@
 from snowflake.connector import connect
 import csv
+import os 
 
-# Set up your Snowflake connection
-account = 'LEONCENSHUTI'
-user = 'LEONCEDEV'
-password = '3sQ25GYNaQiNZzx'
-warehouse = 'COMPUTE_WH'
-database = 'DEMO_DB'
+# Define the Snowflake account, user, password, warehouse, and database
+account = os.environ['SNOWFLAKE_ACCOUNT']
+user = os.environ['SNOWFLAKE_USER']
+password = os.environ['SNOWFLAKE_PASSWORD']
+warehouse = os.environ['SNOWFLAKE_WAREHOUSE']
+database = os.environ['SNOWFLAKE_DATABASE']
+schema = os.environ['SNOWFLAKE_SCHEMA']
+
 #sf = Snowflake(account, user, password, warehouse, database)
 
 # Establish a connection to the Snowflake database
