@@ -1,1 +1,1 @@
-{"_invocation_id": "dcce45e9-ba96-4c84-a966-5d9cf4efe70d", "linked": {}}
+{"_invocation_id": "a6dd46db-f276-4c1c-85d1-e428959e7ea6", "linked": {"0": {"name": "model.usgovdata.my_first_dbt_model", "type": "model", "succ": [1]}, "1": {"name": "model.usgovdata.snowflake_dbt_deployment", "type": "model"}}}

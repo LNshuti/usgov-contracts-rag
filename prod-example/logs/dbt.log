@@ -226,3 +226,341 @@ There are 1 unused configuration paths:
 [0m13:21:22.756544 [debug] [MainThread]: Command `dbt run` succeeded at 13:21:22.756448 after 1.34 seconds
 [0m13:21:22.756832 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x102cbeeb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12fcb3f10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12fcc1430>]}
 [0m13:21:22.757051 [debug] [MainThread]: Flushing usage events
+[0m13:23:48.730458 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10312eeb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1062c72b0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1062f54c0>]}
+
+
+============================== 13:23:48.732998 | 39937870-8907-4fcb-8a48-cd37841a422c ==============================
+[0m13:23:48.732998 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:23:48.733329 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/lnshuti/.dbt', 'fail_fast': 'False', 'warn_error': 'None', 'log_path': '/Users/lnshuti/Desktop/portfolio/usgov-contracts-rag/prod-example/logs', 'debug': 'False', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'introspect': 'True', 'invocation_command': 'dbt run', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m13:23:49.493425 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `source-paths` config has been renamed to `model-paths`. Please update your
+`dbt_project.yml` configuration to reflect this change.
+[0m13:23:49.493755 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': '39937870-8907-4fcb-8a48-cd37841a422c', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1372b7370>]}
+[0m13:23:49.494030 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `data-paths` config has been renamed to `seed-paths`. Please update your
+`dbt_project.yml` configuration to reflect this change.
+[0m13:23:49.494238 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': '39937870-8907-4fcb-8a48-cd37841a422c', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1372b73a0>]}
+[0m13:23:49.573620 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '39937870-8907-4fcb-8a48-cd37841a422c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1062f54c0>]}
+[0m13:23:49.611332 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '39937870-8907-4fcb-8a48-cd37841a422c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1373e2820>]}
+[0m13:23:49.611885 [info ] [MainThread]: Registered adapter: snowflake=1.7.1
+[0m13:23:49.622052 [debug] [MainThread]: checksum: 54188551c516f4dd1c42b8d9c289f2bf49f18ae42632e2ba36a64ad29fd60da4, vars: {}, profile: , target: , version: 1.7.7
+[0m13:23:49.647122 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m13:23:49.647385 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m13:23:49.647611 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.usgovdata
+[0m13:23:49.650333 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '39937870-8907-4fcb-8a48-cd37841a422c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1375aa0a0>]}
+[0m13:23:49.656436 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '39937870-8907-4fcb-8a48-cd37841a422c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1374e4940>]}
+[0m13:23:49.656696 [info ] [MainThread]: Found 0 sources, 0 exposures, 0 metrics, 430 macros, 0 groups, 0 semantic models
+[0m13:23:49.656902 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '39937870-8907-4fcb-8a48-cd37841a422c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1374e4ac0>]}
+[0m13:23:49.657517 [info ] [MainThread]: 
+[0m13:23:49.657708 [warn ] [MainThread]: Nothing to do. Try checking your model configs and model specification args
+[0m13:23:49.657978 [debug] [MainThread]: Command end result
+[0m13:23:49.663552 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 0.9589094, "process_user_time": 3.32272, "process_kernel_time": 0.233672, "process_mem_max_rss": "176242688", "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:23:49.663877 [debug] [MainThread]: Command `dbt run` succeeded at 13:23:49.663810 after 0.96 seconds
+[0m13:23:49.664085 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10312eeb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x13728af10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1373e2400>]}
+[0m13:23:49.664290 [debug] [MainThread]: Flushing usage events
+[0m13:24:34.168408 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106dc2820>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111fbbdf0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111fa5b50>]}
+
+
+============================== 13:24:34.170950 | 75d2329e-cb4b-4b85-b591-9666c7678537 ==============================
+[0m13:24:34.170950 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:24:34.171274 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'debug': 'False', 'log_path': '/Users/lnshuti/Desktop/portfolio/usgov-contracts-rag/prod-example/logs', 'fail_fast': 'False', 'profiles_dir': '/Users/lnshuti/.dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'invocation_command': 'dbt run', 'log_format': 'default', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m13:24:35.005248 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '75d2329e-cb4b-4b85-b591-9666c7678537', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111f84b20>]}
+[0m13:24:35.043245 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '75d2329e-cb4b-4b85-b591-9666c7678537', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1367ec430>]}
+[0m13:24:35.044330 [info ] [MainThread]: Registered adapter: snowflake=1.7.1
+[0m13:24:35.060626 [debug] [MainThread]: checksum: 54188551c516f4dd1c42b8d9c289f2bf49f18ae42632e2ba36a64ad29fd60da4, vars: {}, profile: , target: , version: 1.7.7
+[0m13:24:35.066402 [info ] [MainThread]: Unable to do partial parsing because a project config has changed
+[0m13:24:35.066754 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '75d2329e-cb4b-4b85-b591-9666c7678537', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1367f7f70>]}
+[0m13:24:35.420213 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.usgovdata
+[0m13:24:35.422793 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '75d2329e-cb4b-4b85-b591-9666c7678537', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x136ab20d0>]}
+[0m13:24:35.428714 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '75d2329e-cb4b-4b85-b591-9666c7678537', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x136b72070>]}
+[0m13:24:35.429006 [info ] [MainThread]: Found 0 sources, 0 exposures, 0 metrics, 430 macros, 0 groups, 0 semantic models
+[0m13:24:35.429215 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '75d2329e-cb4b-4b85-b591-9666c7678537', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x136867040>]}
+[0m13:24:35.429909 [info ] [MainThread]: 
+[0m13:24:35.430121 [warn ] [MainThread]: Nothing to do. Try checking your model configs and model specification args
+[0m13:24:35.430389 [debug] [MainThread]: Command end result
+[0m13:24:35.436081 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 1.2997457, "process_user_time": 3.667518, "process_kernel_time": 0.267494, "process_mem_max_rss": "180076544", "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:24:35.436448 [debug] [MainThread]: Command `dbt run` succeeded at 13:24:35.436379 after 1.30 seconds
+[0m13:24:35.436693 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106dc2820>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1368d4940>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1369892b0>]}
+[0m13:24:35.436907 [debug] [MainThread]: Flushing usage events
+[0m13:26:47.299468 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104a3b1f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107007430>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107035910>]}
+
+
+============================== 13:26:47.302381 | c9e16c77-988c-457e-af0b-73f2bee6ef0f ==============================
+[0m13:26:47.302381 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:26:47.302759 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/lnshuti/.dbt', 'version_check': 'True', 'warn_error': 'None', 'log_path': '/Users/lnshuti/Desktop/portfolio/usgov-contracts-rag/prod-example/logs', 'fail_fast': 'False', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt run', 'introspect': 'True', 'static_parser': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m13:26:48.141245 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'c9e16c77-988c-457e-af0b-73f2bee6ef0f', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107007160>]}
+[0m13:26:48.178749 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'c9e16c77-988c-457e-af0b-73f2bee6ef0f', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12c833460>]}
+[0m13:26:48.179314 [info ] [MainThread]: Registered adapter: snowflake=1.7.1
+[0m13:26:48.189291 [debug] [MainThread]: checksum: 54188551c516f4dd1c42b8d9c289f2bf49f18ae42632e2ba36a64ad29fd60da4, vars: {}, profile: , target: , version: 1.7.7
+[0m13:26:48.214720 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m13:26:48.214968 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m13:26:48.215207 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.usgovdata
+[0m13:26:48.217979 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'c9e16c77-988c-457e-af0b-73f2bee6ef0f', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12cbd00d0>]}
+[0m13:26:48.222758 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'c9e16c77-988c-457e-af0b-73f2bee6ef0f', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12cb138b0>]}
+[0m13:26:48.223046 [info ] [MainThread]: Found 0 sources, 0 exposures, 0 metrics, 430 macros, 0 groups, 0 semantic models
+[0m13:26:48.223258 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'c9e16c77-988c-457e-af0b-73f2bee6ef0f', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12cb13a60>]}
+[0m13:26:48.223987 [info ] [MainThread]: 
+[0m13:26:48.224192 [warn ] [MainThread]: Nothing to do. Try checking your model configs and model specification args
+[0m13:26:48.224474 [debug] [MainThread]: Command end result
+[0m13:26:48.229531 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 0.9685214, "process_user_time": 3.332509, "process_kernel_time": 0.272781, "process_mem_max_rss": "181633024", "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:26:48.229864 [debug] [MainThread]: Command `dbt run` succeeded at 13:26:48.229796 after 0.97 seconds
+[0m13:26:48.230077 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104a3b1f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12c9ce340>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12cb9bc10>]}
+[0m13:26:48.230259 [debug] [MainThread]: Flushing usage events
+[0m13:28:04.410957 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105658400>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107a17eb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107a01dc0>]}
+
+
+============================== 13:28:04.413528 | 90d22204-2ab1-4764-9484-c32069dc4f08 ==============================
+[0m13:28:04.413528 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:28:04.413869 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/lnshuti/.dbt', 'fail_fast': 'False', 'warn_error': 'None', 'log_path': '/Users/lnshuti/Desktop/portfolio/usgov-contracts-rag/prod-example/logs', 'version_check': 'True', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'static_parser': 'True', 'log_format': 'default', 'target_path': 'None', 'invocation_command': 'dbt run', 'send_anonymous_usage_stats': 'True'}
+[0m13:28:05.280762 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '90d22204-2ab1-4764-9484-c32069dc4f08', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1079e0130>]}
+[0m13:28:05.318222 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '90d22204-2ab1-4764-9484-c32069dc4f08', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1079bac70>]}
+[0m13:28:05.318750 [info ] [MainThread]: Registered adapter: snowflake=1.7.1
+[0m13:28:05.328649 [debug] [MainThread]: checksum: 54188551c516f4dd1c42b8d9c289f2bf49f18ae42632e2ba36a64ad29fd60da4, vars: {}, profile: , target: , version: 1.7.7
+[0m13:28:05.354293 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 1 files added, 0 files changed.
+[0m13:28:05.354622 [debug] [MainThread]: Partial parsing: added file: usgovdata://models/snowflake_dbt_deployment.py
+[0m13:28:05.411846 [error] [MainThread]: Encountered an error:
+Compilation Error
+  Model 'model.usgovdata.snowflake_dbt_deployment' (models/snowflake_dbt_deployment.py) depends on a node named 'my_first_dbt_model' which was not found
+[0m13:28:05.413967 [debug] [MainThread]: Resource report: {"command_name": "run", "command_wall_clock_time": 1.0361671, "process_user_time": 3.319452, "process_kernel_time": 0.262707, "process_mem_max_rss": "179159040", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:28:05.414319 [debug] [MainThread]: Command `dbt run` failed at 13:28:05.414244 after 1.04 seconds
+[0m13:28:05.414536 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105658400>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11e58c850>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11e4ebfa0>]}
+[0m13:28:05.414756 [debug] [MainThread]: Flushing usage events
+[0m13:28:52.096318 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106da3400>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10957f2e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109569dc0>]}
+
+
+============================== 13:28:52.098825 | 1258f0a0-a512-429b-9f28-c175bd1fd612 ==============================
+[0m13:28:52.098825 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:28:52.099165 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/lnshuti/.dbt', 'debug': 'False', 'warn_error': 'None', 'log_path': '/Users/lnshuti/Desktop/portfolio/usgov-contracts-rag/prod-example/logs', 'version_check': 'True', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'invocation_command': 'dbt run', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m13:28:52.861091 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '1258f0a0-a512-429b-9f28-c175bd1fd612', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109547130>]}
+[0m13:28:52.897935 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '1258f0a0-a512-429b-9f28-c175bd1fd612', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109522c70>]}
+[0m13:28:52.898830 [info ] [MainThread]: Registered adapter: snowflake=1.7.1
+[0m13:28:52.908942 [debug] [MainThread]: checksum: 54188551c516f4dd1c42b8d9c289f2bf49f18ae42632e2ba36a64ad29fd60da4, vars: {}, profile: , target: , version: 1.7.7
+[0m13:28:52.931228 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 1 files added, 0 files changed.
+[0m13:28:52.931521 [debug] [MainThread]: Partial parsing: added file: usgovdata://models/snowflake_dbt_deployment.py
+[0m13:28:52.992499 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '1258f0a0-a512-429b-9f28-c175bd1fd612', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x145278100>]}
+[0m13:28:52.999067 [error] [MainThread]: Encountered an error:
+Found a cycle: model.usgovdata.snowflake_dbt_deployment
+[0m13:28:53.002100 [error] [MainThread]: Traceback (most recent call last):
+  File "/Users/lnshuti/anaconda3/envs/gov-data/lib/python3.9/site-packages/dbt/cli/requires.py", line 91, in wrapper
+    result, success = func(*args, **kwargs)
+  File "/Users/lnshuti/anaconda3/envs/gov-data/lib/python3.9/site-packages/dbt/cli/requires.py", line 76, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/lnshuti/anaconda3/envs/gov-data/lib/python3.9/site-packages/dbt/cli/requires.py", line 169, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/lnshuti/anaconda3/envs/gov-data/lib/python3.9/site-packages/dbt/cli/requires.py", line 198, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/lnshuti/anaconda3/envs/gov-data/lib/python3.9/site-packages/dbt/cli/requires.py", line 245, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/lnshuti/anaconda3/envs/gov-data/lib/python3.9/site-packages/dbt/cli/requires.py", line 276, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/lnshuti/anaconda3/envs/gov-data/lib/python3.9/site-packages/dbt/cli/main.py", line 625, in run
+    results = task.run()
+  File "/Users/lnshuti/anaconda3/envs/gov-data/lib/python3.9/site-packages/dbt/task/runnable.py", line 454, in run
+    self._runtime_initialize()
+  File "/Users/lnshuti/anaconda3/envs/gov-data/lib/python3.9/site-packages/dbt/task/compile.py", line 147, in _runtime_initialize
+    super()._runtime_initialize()
+  File "/Users/lnshuti/anaconda3/envs/gov-data/lib/python3.9/site-packages/dbt/task/runnable.py", line 143, in _runtime_initialize
+    self.compile_manifest()
+  File "/Users/lnshuti/anaconda3/envs/gov-data/lib/python3.9/site-packages/dbt/task/base.py", line 173, in compile_manifest
+    self.graph = compiler.compile(self.manifest)
+  File "/Users/lnshuti/anaconda3/envs/gov-data/lib/python3.9/site-packages/dbt/compilation.py", line 455, in compile
+    linker.link_graph(manifest)
+  File "/Users/lnshuti/anaconda3/envs/gov-data/lib/python3.9/site-packages/dbt/compilation.py", line 200, in link_graph
+    raise RuntimeError("Found a cycle: {}".format(cycle))
+RuntimeError: Found a cycle: model.usgovdata.snowflake_dbt_deployment
+
+[0m13:28:53.004096 [debug] [MainThread]: Resource report: {"command_name": "run", "command_wall_clock_time": 0.9395032, "process_user_time": 3.336202, "process_kernel_time": 0.257364, "process_mem_max_rss": "182009856", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:28:53.004406 [debug] [MainThread]: Command `dbt run` failed at 13:28:53.004335 after 0.94 seconds
+[0m13:28:53.004612 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106da3400>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x14516baf0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x14516b970>]}
+[0m13:28:53.004812 [debug] [MainThread]: Flushing usage events
+[0m13:29:45.012917 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1037471f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105ad4430>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105b01910>]}
+
+
+============================== 13:29:45.015501 | a3104121-1696-4f9f-b9f0-eb04c56fb4df ==============================
+[0m13:29:45.015501 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:29:45.015840 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/lnshuti/.dbt', 'version_check': 'True', 'warn_error': 'None', 'log_path': '/Users/lnshuti/Desktop/portfolio/usgov-contracts-rag/prod-example/logs', 'fail_fast': 'False', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'introspect': 'True', 'invocation_command': 'dbt run', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m13:29:45.828932 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'a3104121-1696-4f9f-b9f0-eb04c56fb4df', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105ad4160>]}
+[0m13:29:45.865846 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'a3104121-1696-4f9f-b9f0-eb04c56fb4df', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x137273e50>]}
+[0m13:29:45.866383 [info ] [MainThread]: Registered adapter: snowflake=1.7.1
+[0m13:29:45.875982 [debug] [MainThread]: checksum: 54188551c516f4dd1c42b8d9c289f2bf49f18ae42632e2ba36a64ad29fd60da4, vars: {}, profile: , target: , version: 1.7.7
+[0m13:29:45.901739 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m13:29:45.902124 [debug] [MainThread]: Partial parsing: updated file: usgovdata://models/snowflake_dbt_deployment.py
+[0m13:29:45.963408 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'a3104121-1696-4f9f-b9f0-eb04c56fb4df', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x137aafd60>]}
+[0m13:29:45.969289 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'a3104121-1696-4f9f-b9f0-eb04c56fb4df', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1379d6400>]}
+[0m13:29:45.969548 [info ] [MainThread]: Found 1 model, 0 sources, 0 exposures, 0 metrics, 430 macros, 0 groups, 0 semantic models
+[0m13:29:45.969762 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'a3104121-1696-4f9f-b9f0-eb04c56fb4df', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x137a51190>]}
+[0m13:29:45.970472 [info ] [MainThread]: 
+[0m13:29:45.970874 [debug] [MainThread]: Acquiring new snowflake connection 'master'
+[0m13:29:45.971420 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_DEMO_DB'
+[0m13:29:45.977834 [debug] [ThreadPool]: Using snowflake connection "list_DEMO_DB"
+[0m13:29:45.978062 [debug] [ThreadPool]: On list_DEMO_DB: /* {"app": "dbt", "dbt_version": "1.7.7", "profile_name": "usgovdata", "target_name": "dev", "connection_name": "list_DEMO_DB"} */
+show terse schemas in database DEMO_DB
+    limit 10000
+[0m13:29:45.978253 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m13:29:46.789224 [debug] [ThreadPool]: Snowflake adapter: Error running SQL: /* {"app": "dbt", "dbt_version": "1.7.7", "profile_name": "usgovdata", "target_name": "dev", "connection_name": "list_DEMO_DB"} */
+show terse schemas in database DEMO_DB
+    limit 10000
+[0m13:29:46.789616 [debug] [ThreadPool]: Snowflake adapter: Rolling back transaction.
+[0m13:29:46.789934 [debug] [ThreadPool]: Snowflake adapter: Error running SQL: macro list_schemas
+[0m13:29:46.790233 [debug] [ThreadPool]: Snowflake adapter: Rolling back transaction.
+[0m13:29:46.790536 [debug] [ThreadPool]: On list_DEMO_DB: No close available on handle
+[0m13:29:46.791414 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m13:29:46.791708 [debug] [MainThread]: Connection 'list_DEMO_DB' was properly closed.
+[0m13:29:46.791983 [info ] [MainThread]: 
+[0m13:29:46.792279 [info ] [MainThread]: Finished running  in 0 hours 0 minutes and 0.82 seconds (0.82s).
+[0m13:29:46.792668 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Database error while listing schemas in database "DEMO_DB"
+  Database Error
+    250001 (08001): Failed to connect to DB. Verify the account name is correct: LEONCENSHUTI.snowflakecomputing.com:443. HTTP 403: Forbidden
+[0m13:29:46.794799 [debug] [MainThread]: Resource report: {"command_name": "run", "command_wall_clock_time": 1.8140478, "process_user_time": 3.519681, "process_kernel_time": 0.28929, "process_mem_max_rss": "189743104", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:29:46.795261 [debug] [MainThread]: Command `dbt run` failed at 13:29:46.795159 after 1.81 seconds
+[0m13:29:46.795556 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1037471f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x137934a90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x137a94d90>]}
+[0m13:29:46.795856 [debug] [MainThread]: Flushing usage events
+[0m13:31:18.779654 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x103455eb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1057e42b0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1058114c0>]}
+
+
+============================== 13:31:18.782210 | 4de5af19-c7bd-49c0-9803-a2e2262d933a ==============================
+[0m13:31:18.782210 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:31:18.782556 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/lnshuti/.dbt', 'fail_fast': 'False', 'debug': 'False', 'log_path': '/Users/lnshuti/Desktop/portfolio/usgov-contracts-rag/prod-example/logs', 'warn_error': 'None', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'invocation_command': 'dbt run', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m13:31:19.618064 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '4de5af19-c7bd-49c0-9803-a2e2262d933a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1058114c0>]}
+[0m13:31:19.656773 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '4de5af19-c7bd-49c0-9803-a2e2262d933a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11c89c7c0>]}
+[0m13:31:19.657288 [info ] [MainThread]: Registered adapter: snowflake=1.7.1
+[0m13:31:19.671614 [debug] [MainThread]: checksum: 54188551c516f4dd1c42b8d9c289f2bf49f18ae42632e2ba36a64ad29fd60da4, vars: {}, profile: , target: , version: 1.7.7
+[0m13:31:19.699003 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m13:31:19.699343 [debug] [MainThread]: Partial parsing: updated file: usgovdata://models/snowflake_dbt_deployment.py
+[0m13:31:19.754046 [error] [MainThread]: Encountered an error:
+Compilation Error
+  Model 'model.usgovdata.snowflake_dbt_deployment' (models/snowflake_dbt_deployment.py) depends on a node named 'temperatures' which was not found
+[0m13:31:19.755908 [debug] [MainThread]: Resource report: {"command_name": "run", "command_wall_clock_time": 1.0088215, "process_user_time": 3.408155, "process_kernel_time": 0.283775, "process_mem_max_rss": "182747136", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:31:19.756246 [debug] [MainThread]: Command `dbt run` failed at 13:31:19.756174 after 1.01 seconds
+[0m13:31:19.756461 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x103455eb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11cd35a00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11ca78460>]}
+[0m13:31:19.756669 [debug] [MainThread]: Flushing usage events
+[0m13:31:48.047853 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1050471f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107508430>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107535910>]}
+
+
+============================== 13:31:48.050367 | 8d40a349-d202-49ce-98d4-4a0880f2fa7e ==============================
+[0m13:31:48.050367 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:31:48.050679 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/lnshuti/.dbt', 'fail_fast': 'False', 'debug': 'False', 'log_path': '/Users/lnshuti/Desktop/portfolio/usgov-contracts-rag/prod-example/logs', 'version_check': 'True', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'invocation_command': 'dbt run', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m13:31:48.786261 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '8d40a349-d202-49ce-98d4-4a0880f2fa7e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107508160>]}
+[0m13:31:48.823066 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '8d40a349-d202-49ce-98d4-4a0880f2fa7e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12958be50>]}
+[0m13:31:48.823506 [info ] [MainThread]: Registered adapter: snowflake=1.7.1
+[0m13:31:48.834263 [debug] [MainThread]: checksum: 54188551c516f4dd1c42b8d9c289f2bf49f18ae42632e2ba36a64ad29fd60da4, vars: {}, profile: , target: , version: 1.7.7
+[0m13:31:48.857844 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m13:31:48.858218 [debug] [MainThread]: Partial parsing: updated file: usgovdata://models/snowflake_dbt_deployment.py
+[0m13:31:48.913317 [error] [MainThread]: Encountered an error:
+Compilation Error
+  Model 'model.usgovdata.snowflake_dbt_deployment' (models/snowflake_dbt_deployment.py) depends on a node named 'my_first_dbt_model' which was not found
+[0m13:31:48.915977 [debug] [MainThread]: Resource report: {"command_name": "run", "command_wall_clock_time": 0.90023094, "process_user_time": 3.364356, "process_kernel_time": 0.251403, "process_mem_max_rss": "184172544", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:31:48.916332 [debug] [MainThread]: Command `dbt run` failed at 13:31:48.916256 after 0.90 seconds
+[0m13:31:48.916552 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1050471f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12a695fa0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12a695fd0>]}
+[0m13:31:48.916783 [debug] [MainThread]: Flushing usage events
+[0m13:32:03.579213 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107163eb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1094f3790>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109529790>]}
+
+
+============================== 13:32:03.581789 | f0a9d133-1790-45bb-9f27-f768e32fc5cb ==============================
+[0m13:32:03.581789 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:32:03.582118 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'fail_fast': 'False', 'log_path': '/Users/lnshuti/Desktop/portfolio/usgov-contracts-rag/prod-example/logs', 'debug': 'False', 'profiles_dir': '/Users/lnshuti/.dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'introspect': 'True', 'log_format': 'default', 'target_path': 'None', 'invocation_command': 'dbt run --model my_second_python_model', 'send_anonymous_usage_stats': 'True'}
+[0m13:32:04.387933 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'f0a9d133-1790-45bb-9f27-f768e32fc5cb', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109512e80>]}
+[0m13:32:04.426208 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'f0a9d133-1790-45bb-9f27-f768e32fc5cb', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1094ee460>]}
+[0m13:32:04.426799 [info ] [MainThread]: Registered adapter: snowflake=1.7.1
+[0m13:32:04.437405 [debug] [MainThread]: checksum: 54188551c516f4dd1c42b8d9c289f2bf49f18ae42632e2ba36a64ad29fd60da4, vars: {}, profile: , target: , version: 1.7.7
+[0m13:32:04.461625 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m13:32:04.461970 [debug] [MainThread]: Partial parsing: updated file: usgovdata://models/snowflake_dbt_deployment.py
+[0m13:32:04.517329 [error] [MainThread]: Encountered an error:
+Compilation Error
+  Model 'model.usgovdata.snowflake_dbt_deployment' (models/snowflake_dbt_deployment.py) depends on a node named 'my_first_dbt_model' which was not found
+[0m13:32:04.519822 [debug] [MainThread]: Resource report: {"command_name": "run", "command_wall_clock_time": 0.9738039, "process_user_time": 3.108095, "process_kernel_time": 0.252906, "process_mem_max_rss": "181010432", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:32:04.520165 [debug] [MainThread]: Command `dbt run` failed at 13:32:04.520088 after 0.97 seconds
+[0m13:32:04.520398 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107163eb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x145956b50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1457aac70>]}
+[0m13:32:04.520620 [debug] [MainThread]: Flushing usage events
+[0m13:34:29.277661 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107776730>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109b08790>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109b3e790>]}
+
+
+============================== 13:34:29.280305 | d60f70da-3c28-47fa-9e22-1c82715a9056 ==============================
+[0m13:34:29.280305 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:34:29.280676 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'debug': 'False', 'log_path': '/Users/lnshuti/Desktop/portfolio/usgov-contracts-rag/prod-example/logs', 'version_check': 'True', 'profiles_dir': '/Users/lnshuti/.dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'introspect': 'True', 'static_parser': 'True', 'invocation_command': 'dbt run --model my_second_python_model', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m13:34:30.146946 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'd60f70da-3c28-47fa-9e22-1c82715a9056', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109b29e80>]}
+[0m13:34:30.183955 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'd60f70da-3c28-47fa-9e22-1c82715a9056', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12940f700>]}
+[0m13:34:30.185066 [info ] [MainThread]: Registered adapter: snowflake=1.7.1
+[0m13:34:30.195533 [debug] [MainThread]: checksum: 54188551c516f4dd1c42b8d9c289f2bf49f18ae42632e2ba36a64ad29fd60da4, vars: {}, profile: , target: , version: 1.7.7
+[0m13:34:30.221903 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m13:34:30.222263 [debug] [MainThread]: Partial parsing: updated file: usgovdata://models/snowflake_dbt_deployment.py
+[0m13:34:30.277710 [error] [MainThread]: Encountered an error:
+Compilation Error
+  Model 'model.usgovdata.snowflake_dbt_deployment' (models/snowflake_dbt_deployment.py) depends on a node named 'my_first_dbt_model' which was not found
+[0m13:34:30.280838 [debug] [MainThread]: Resource report: {"command_name": "run", "command_wall_clock_time": 1.0376682, "process_user_time": 3.346999, "process_kernel_time": 0.261163, "process_mem_max_rss": "180305920", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:34:30.281211 [debug] [MainThread]: Command `dbt run` failed at 13:34:30.281137 after 1.04 seconds
+[0m13:34:30.281439 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107776730>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1298fe3a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x129852b80>]}
+[0m13:34:30.281649 [debug] [MainThread]: Flushing usage events
+[0m13:35:48.469826 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104f8ea60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10731b970>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107356ca0>]}
+
+
+============================== 13:35:48.472366 | 3e990eb2-cdf1-4470-a218-84559ac742ee ==============================
+[0m13:35:48.472366 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:35:48.472723 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/lnshuti/.dbt', 'version_check': 'True', 'debug': 'False', 'log_path': '/Users/lnshuti/Desktop/portfolio/usgov-contracts-rag/prod-example/logs', 'warn_error': 'None', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt run --model my_second_python_model', 'static_parser': 'True', 'introspect': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m13:35:49.284752 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '3e990eb2-cdf1-4470-a218-84559ac742ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107356ca0>]}
+[0m13:35:49.322012 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '3e990eb2-cdf1-4470-a218-84559ac742ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x120ca87f0>]}
+[0m13:35:49.322546 [info ] [MainThread]: Registered adapter: snowflake=1.7.1
+[0m13:35:49.332949 [debug] [MainThread]: checksum: 54188551c516f4dd1c42b8d9c289f2bf49f18ae42632e2ba36a64ad29fd60da4, vars: {}, profile: , target: , version: 1.7.7
+[0m13:35:49.358976 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 1 files added, 1 files changed.
+[0m13:35:49.359292 [debug] [MainThread]: Partial parsing: added file: usgovdata://models/my_first_dbt_model.sql
+[0m13:35:49.359535 [debug] [MainThread]: Partial parsing: updated file: usgovdata://models/snowflake_dbt_deployment.py
+[0m13:35:49.424938 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '3e990eb2-cdf1-4470-a218-84559ac742ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x120c5d520>]}
+[0m13:35:49.431543 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '3e990eb2-cdf1-4470-a218-84559ac742ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x120f91100>]}
+[0m13:35:49.431804 [info ] [MainThread]: Found 2 models, 0 sources, 0 exposures, 0 metrics, 430 macros, 0 groups, 0 semantic models
+[0m13:35:49.432025 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '3e990eb2-cdf1-4470-a218-84559ac742ee', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x120cc1c40>]}
+[0m13:35:49.432355 [warn ] [MainThread]: The selection criterion 'my_second_python_model' does not match any nodes
+[0m13:35:49.432815 [info ] [MainThread]: 
+[0m13:35:49.433022 [warn ] [MainThread]: Nothing to do. Try checking your model configs and model specification args
+[0m13:35:49.433299 [debug] [MainThread]: Command end result
+[0m13:35:49.438884 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 1.0014445, "process_user_time": 3.359392, "process_kernel_time": 0.272903, "process_mem_max_rss": "182566912", "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:35:49.439244 [debug] [MainThread]: Command `dbt run` succeeded at 13:35:49.439167 after 1.00 seconds
+[0m13:35:49.439470 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104f8ea60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107333370>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x120ea2730>]}
+[0m13:35:49.439698 [debug] [MainThread]: Flushing usage events
+[0m13:36:23.022464 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1070acf40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109421670>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109456cd0>]}
+
+
+============================== 13:36:23.025169 | 10932b5b-7802-4f16-bd76-0fe48aaf6378 ==============================
+[0m13:36:23.025169 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:36:23.025506 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/lnshuti/.dbt', 'version_check': 'True', 'debug': 'False', 'log_path': '/Users/lnshuti/Desktop/portfolio/usgov-contracts-rag/prod-example/logs', 'warn_error': 'None', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'log_format': 'default', 'introspect': 'True', 'target_path': 'None', 'invocation_command': 'dbt ls', 'send_anonymous_usage_stats': 'True'}
+[0m13:36:23.762292 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '10932b5b-7802-4f16-bd76-0fe48aaf6378', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109437430>]}
+[0m13:36:23.799382 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '10932b5b-7802-4f16-bd76-0fe48aaf6378', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109437400>]}
+[0m13:36:23.799952 [info ] [MainThread]: Registered adapter: snowflake=1.7.1
+[0m13:36:23.810530 [debug] [MainThread]: checksum: 54188551c516f4dd1c42b8d9c289f2bf49f18ae42632e2ba36a64ad29fd60da4, vars: {}, profile: , target: , version: 1.7.7
+[0m13:36:23.834287 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m13:36:23.834546 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m13:36:23.837387 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '10932b5b-7802-4f16-bd76-0fe48aaf6378', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x13d73df70>]}
+[0m13:36:23.842066 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '10932b5b-7802-4f16-bd76-0fe48aaf6378', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x13d64c5e0>]}
+[0m13:36:23.842321 [info ] [MainThread]: Found 2 models, 0 sources, 0 exposures, 0 metrics, 430 macros, 0 groups, 0 semantic models
+[0m13:36:23.842535 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '10932b5b-7802-4f16-bd76-0fe48aaf6378', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x13d64c850>]}
+[0m13:36:23.844456 [debug] [MainThread]: Resource report: {"command_name": "list", "command_success": true, "command_wall_clock_time": 0.855037, "process_user_time": 3.273992, "process_kernel_time": 0.25747, "process_mem_max_rss": "182026240", "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:36:23.844756 [debug] [MainThread]: Command `dbt ls` succeeded at 13:36:23.844693 after 0.86 seconds
+[0m13:36:23.844986 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1070acf40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109437430>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x13d64c7c0>]}
+[0m13:36:23.845192 [debug] [MainThread]: Flushing usage events
+[0m13:48:17.771110 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1058ee430>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107c9e580>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107caa880>]}
+
+
+============================== 13:48:17.773543 | a6dd46db-f276-4c1c-85d1-e428959e7ea6 ==============================
+[0m13:48:17.773543 [info ] [MainThread]: Running with dbt=1.7.7
+[0m13:48:17.773856 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/lnshuti/.dbt', 'fail_fast': 'False', 'warn_error': 'None', 'log_path': '/Users/lnshuti/Desktop/portfolio/usgov-contracts-rag/prod-example/logs', 'debug': 'False', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'invocation_command': 'dbt ls', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m13:48:18.583341 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'a6dd46db-f276-4c1c-85d1-e428959e7ea6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107cb6e50>]}
+[0m13:48:18.620103 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'a6dd46db-f276-4c1c-85d1-e428959e7ea6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1380a2ac0>]}
+[0m13:48:18.620607 [info ] [MainThread]: Registered adapter: snowflake=1.7.1
+[0m13:48:18.629899 [debug] [MainThread]: checksum: 54188551c516f4dd1c42b8d9c289f2bf49f18ae42632e2ba36a64ad29fd60da4, vars: {}, profile: , target: , version: 1.7.7
+[0m13:48:18.656953 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m13:48:18.657187 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m13:48:18.659959 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'a6dd46db-f276-4c1c-85d1-e428959e7ea6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x13827dfa0>]}
+[0m13:48:18.665068 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'a6dd46db-f276-4c1c-85d1-e428959e7ea6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x138188580>]}
+[0m13:48:18.665323 [info ] [MainThread]: Found 2 models, 0 sources, 0 exposures, 0 metrics, 430 macros, 0 groups, 0 semantic models
+[0m13:48:18.665539 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'a6dd46db-f276-4c1c-85d1-e428959e7ea6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1381887f0>]}
+[0m13:48:18.667519 [debug] [MainThread]: Resource report: {"command_name": "list", "command_success": true, "command_wall_clock_time": 0.93035144, "process_user_time": 3.297965, "process_kernel_time": 0.248171, "process_mem_max_rss": "180453376", "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m13:48:18.667812 [debug] [MainThread]: Command `dbt ls` succeeded at 13:48:18.667749 after 0.93 seconds
+[0m13:48:18.668008 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1058ee430>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107c56c70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x138188820>]}
+[0m13:48:18.668186 [debug] [MainThread]: Flushing usage events
