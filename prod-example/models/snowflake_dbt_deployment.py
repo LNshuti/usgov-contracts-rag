@@ -1,19 +1,35 @@
-from snowflake.snowpark.functions import udf
+from snowflake.connector import connect
+import csv
 
-def model(dbt, session):
-    # Must be either table or incremental (view is not currently supported)
-    dbt.config(materialized = "table")
+# Set up your Snowflake connection
+account = 'LEONCENSHUTI'
+user = 'LEONCEDEV'
+password = '3sQ25GYNaQiNZzx'
+warehouse = 'COMPUTE_WH'
+database = 'DEMO_DB'
+#sf = Snowflake(account, user, password, warehouse, database)
 
-    # User defined function
-    @udf
-    def add_one(x: int) -> int:
-        x = 0 if not x else x
-        return x + 1
+# Establish a connection to the Snowflake database
+conn = connect(
+    user=user,
+    password=password,
+    account=account,
+    warehouse=warehouse,
+    database=database,
+    schema='DEMO_SCHEMA'
+)
 
-    # DataFrame representing an upstream model
-    df = dbt.ref("my_first_dbt_model")
+# Load the CSV file from S3
+bucket = 'govgptco'
+file_path = 'FY2023_archived_opportunities.csv'
+conn.load_file(bucket, file_path, format='CSV')
 
-    # Add a new column containing the id incremented by one
-    df = df.withColumn("id_plus_one", add_one(df["id"]))
+# Create a table in Snowflake to store the loaded data
+table_name = 'FY2023_archived_opportunities'
+conn.create_table(table_name, column_definitions=None)
 
-    return df
+# Load the data into the table
+conn.load_data(table_name, overwrite=True)
+
+# Close the Snowflake connection
+conn.close()

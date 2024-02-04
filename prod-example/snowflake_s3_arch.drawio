@@ -1,0 +1,28 @@
+<mxfile host="65bd71144e">
+    <diagram id="2EZdAWBl3B24MNl2Tuxk" name="Page-1">
+        <mxGraphModel dx="490" dy="261" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="6" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="2" target="4">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.s3;fillColor=#E05243;gradientColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="80" width="76.5" height="93" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="s3://govgptco" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="48.25" y="173" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="" style="shape=mxgraph.signs.nature.snowflake;html=1;pointerEvents=1;fillColor=#0050ef;strokeColor=#001DBC;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="200" y="80" width="87" height="98" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Snowflake DB: DEMO_DM" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="200" y="180" width="86.5" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="COPY INTO" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="130" y="130" width="60" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
