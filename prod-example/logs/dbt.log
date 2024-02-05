@@ -564,3 +564,22 @@ Compilation Error
 [0m13:48:18.667812 [debug] [MainThread]: Command `dbt ls` succeeded at 13:48:18.667749 after 0.93 seconds
 [0m13:48:18.668008 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1058ee430>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107c56c70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x138188820>]}
 [0m13:48:18.668186 [debug] [MainThread]: Flushing usage events
+[0m19:15:13.823059 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1034b38e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105b31670>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105b67a60>]}
+
+
+============================== 19:15:13.825916 | 403c1073-9c93-40df-aa42-97ec674b4108 ==============================
+[0m19:15:13.825916 [info ] [MainThread]: Running with dbt=1.7.7
+[0m19:15:13.826279 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/lnshuti/.dbt', 'debug': 'False', 'fail_fast': 'False', 'log_path': '/Users/lnshuti/Desktop/portfolio/usgov-contracts-rag/prod-example/logs', 'warn_error': 'None', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt run', 'static_parser': 'True', 'log_format': 'default', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m19:15:14.730847 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '403c1073-9c93-40df-aa42-97ec674b4108', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105b42940>]}
+[0m19:15:14.769819 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '403c1073-9c93-40df-aa42-97ec674b4108', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12f3e74c0>]}
+[0m19:15:14.770435 [info ] [MainThread]: Registered adapter: snowflake=1.7.1
+[0m19:15:14.822641 [debug] [MainThread]: checksum: 54188551c516f4dd1c42b8d9c289f2bf49f18ae42632e2ba36a64ad29fd60da4, vars: {}, profile: , target: , version: 1.7.7
+[0m19:15:14.851922 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m19:15:14.852258 [debug] [MainThread]: Partial parsing: updated file: usgovdata://models/snowflake_dbt_deployment.py
+[0m19:15:14.903810 [error] [MainThread]: Encountered an error:
+Parsing Error in model snowflake_dbt_deployment (models/snowflake_dbt_deployment.py)
+  dbt allows exactly one model defined per python file, found 0
+[0m19:15:14.942148 [debug] [MainThread]: Resource report: {"command_name": "run", "command_wall_clock_time": 1.1547146, "process_user_time": 3.558466, "process_kernel_time": 0.269138, "process_mem_max_rss": "183582720", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m19:15:14.942646 [debug] [MainThread]: Command `dbt run` failed at 19:15:14.942557 after 1.16 seconds
+[0m19:15:14.942929 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1034b38e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12f8821c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12f882880>]}
+[0m19:15:14.943189 [debug] [MainThread]: Flushing usage events
