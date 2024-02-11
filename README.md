@@ -59,3 +59,6 @@ streamlit run text-to-sql-rag/app.py
 1. Harshad Suryawanshi. From Natural Language to SQL(Na2SQL): Extracting Insights from Databases using OPENAI GPT3.5 and LlamaIndex. https://github.com/AI-ANK/Na2SQL
 
 2. Ravi Theja. Evaluate RAG with Llamaindex. https://cookbook.openai.com/examples/evaluation/evaluate_rag_with_llamaindex
+   
+3. Mostafa Ibrahim. A Gentle Introduction to Advanced RAG. https://wandb.ai/mostafaibrahim17/ml-articles/reports/A-Gentle-Introduction-to-Advanced-RAG--Vmlldzo2NjIyNTQw
+   
