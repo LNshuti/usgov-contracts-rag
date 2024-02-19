@@ -1,35 +1,30 @@
 import streamlit as st
 import pyperclip
 #import wandb 
+import openai
+import os
+import pandas as pd
 
 #from st_aggrid import AgGrid
 from sqlalchemy import create_engine, inspect, text
 from typing import Dict, Any
 
-from llama_index import (
+from llama_index.legacy import (
     VectorStoreIndex,
-    ServiceContext,
     download_loader,
-)
-from llama_index.llama_pack.base import BaseLlamaPack
-from llama_index.llms import OpenAI
-import openai
-import os
-import pandas as pd
-
-from llama_index.llms.palm import PaLM
-
-from llama_index import (
     SimpleDirectoryReader,
     ServiceContext,
     StorageContext,
-    VectorStoreIndex,
     load_index_from_storage,
+    SQLDatabase,
 )
-import sqlite3
 
-from llama_index import SQLDatabase, ServiceContext
-from llama_index.indices.struct_store import NLSQLTableQueryEngine
+from llama_index.legacy.llama_pack.base import BaseLlamaPack
+from llama_index.legacy.llms import OpenAI
+from llama_index.legacy.llms.palm import PaLM
+
+import sqlite3
+from llama_index.legacy.indices.struct_store import NLSQLTableQueryEngine
 
 os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY']
 
