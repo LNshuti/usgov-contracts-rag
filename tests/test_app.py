@@ -1,9 +1,11 @@
 import unittest
 import sqlite3
 import pandas as pd
-import streamlit as st
-import pyperclip
+#import streamlit as st
+#import pyperclip
 import os
+import sys
+sys.path.insert(0, '/Users/lnshuti/Library/Mobile Documents/com~apple~CloudDocs/Desktop/Desktop - Leonce’s Mac mini/portfolio/usgov-contracts-rag/text-to-sql-rag')
 from app import StreamlitChatPack
 from unittest.mock import patch, MagicMock
 
