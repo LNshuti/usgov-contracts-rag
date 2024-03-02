@@ -1,7 +1,7 @@
 import unittest
 import sqlite3
 import pandas as pd
-#import streamlit as st
+import streamlit as st
 #import pyperclip
 from sqlalchemy import inspect
 import os
