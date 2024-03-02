@@ -3,6 +3,7 @@ import sqlite3
 import pandas as pd
 #import streamlit as st
 #import pyperclip
+from sqlalchemy import inspect
 import os
 import sys
 sys.path.insert(0, '/Users/lnshuti/Library/Mobile Documents/com~apple~CloudDocs/Desktop/Desktop - Leonce’s Mac mini/portfolio/usgov-contracts-rag/text-to-sql-rag')
