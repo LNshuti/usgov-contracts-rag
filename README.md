@@ -50,6 +50,11 @@ TABLE_NAME = 'your_table_name'
 python connect_db.py
 ```
 
+### Examine the data with Datasette
+```bash
+datasette serve gov-contracts.db
+```
+
 ### Run the **app.py** python file to start the Streamlit Application
 ```bash
 streamlit run text-to-sql-rag/app.py
