@@ -7,7 +7,7 @@ from sqlalchemy import inspect
 import os
 import sys
 sys.path.insert(0, '/Users/lnshuti/Library/Mobile Documents/com~apple~CloudDocs/Desktop/Desktop - Leonce’s Mac mini/portfolio/usgov-contracts-rag/text-to-sql-rag')
-from app import StreamlitChatPack
+from app.app import StreamlitChatPack
 from unittest.mock import patch, MagicMock
 
 class TestStreamlitChatPack(unittest.TestCase):
