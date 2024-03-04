@@ -57,7 +57,7 @@ datasette serve gov-contracts.db
 
 ### Run the **app.py** python file to start the Streamlit Application
 ```bash
-streamlit run text-to-sql-rag/app.py
+streamlit run app/app.py
 ```
 
 ### References. 
