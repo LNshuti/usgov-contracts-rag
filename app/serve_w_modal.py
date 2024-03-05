@@ -47,7 +47,7 @@ def spawn_server():
             "--browser.serverPort",
             PORT,
             "--server.enableCORS",
-            "true",
+            "false",
         ]
     )
 
