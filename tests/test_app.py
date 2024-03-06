@@ -57,4 +57,5 @@ class TestStreamlitChatPack(unittest.TestCase):
     #         self.app.copy_prompt_to_clipboard(test_prompt)
     #         mock_copy.assert_called_once_with(test_prompt)
 
-if __name__ == '__m
+if __name__ == '__main__':
+    unittest.main()

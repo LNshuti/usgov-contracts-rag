@@ -89,4 +89,4 @@ def run():
         },
     )()
     proxy_context = ProxyContext(config)
-    return make_simple_proxy_app(proxy_context
+    return make_simple_proxy_app(proxy_context)
