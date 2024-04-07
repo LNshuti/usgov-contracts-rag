@@ -12,3 +12,4 @@ data/ContractOpportunitiesFull.csv
 awards_by_contractor_type.numbers
 text-to-sql-rag/log_app_wandb.py
 app/eval_tutorial.py
+app/.streamlit/

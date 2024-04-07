@@ -4,10 +4,10 @@ import openpyxl
 import pyarrow as pa
 
 XLSX_FILE_PATH = 'data/BuyAmericanActExceptionsandWaiversOctober2023.xlsx'
-CSV_FILE_PATH = 'data/ContractOpportunitiesFull.csv'
+CSV_FILE_PATH = 'data/FY2023_archived_opportunities.csv'
 PARQUET_FILE_PATH = 'data/sample_contract_df.parquet'
 DB_FILE_PATH = 'gov-contracts.db'
-TABLE_NAME = 'ContractOpportunitiesFull'
+TABLE_NAME = 'FY2023_archived_opportunities'
 
 
 def remove_columns_with_missing_data(df, threshold=0.5):
