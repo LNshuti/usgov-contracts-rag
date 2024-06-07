@@ -4,7 +4,7 @@ Earlier this year, I listened to Peter Thiel's book Zero to One on Audible. Afte
 
 In this short post, I demonstrate that the Power Law applies also to US. Government contract awards. Using the latest data, and going back in time, I show that the winners of Government contract awards, which is a very large component of the US economy is dominated by a few contractors who win most of the contracts. 
 
-<!-- ### First. Let us simulate the Power Distribution using synthetic data -->
+<!-- ### Simulate the Power Distribution using synthetic data -->
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -62,7 +62,7 @@ We use Official US. Government data from [SAM.Gov](https://sam.gov/content/home)
 The data contains 64481 rows with 47 columns. 
 
 ```{r}
-tabl <- read_csv("data/ContractOpportunitiesFullCSV.csv") %>% 
+tabl <- read_csv("data/FY2023_archived_opportunities.csv") %>% 
   as_tibble() %>% 
   janitor::clean_names()
 
