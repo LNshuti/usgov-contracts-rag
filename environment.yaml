@@ -9,3 +9,4 @@ dependencies:
     - streamlit
     - pyperclip
     - pandas
+    - defog
