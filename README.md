@@ -67,3 +67,5 @@ streamlit run app/app.py
    
 3. Mostafa Ibrahim. A Gentle Introduction to Advanced RAG. https://wandb.ai/mostafaibrahim17/ml-articles/reports/A-Gentle-Introduction-to-Advanced-RAG--Vmlldzo2NjIyNTQw
    
+4. Adam Obeng; J.C. Zhong; Charlie Gu. How we built Text-to-SQL at Pinterest. https://medium.com/pinterest-engineering/how-we-built-text-to-sql-at-pinterest-30bad30dabff
+   
