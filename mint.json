@@ -1,0 +1,58 @@
+{
+    "$schema": "https://mintlify.com/schema.json",
+    "name": "Starter Kit",
+    "logo": {
+      "dark": "/logo/dark.svg",
+      "light": "/logo/light.svg"
+    },
+    "favicon": "/favicon.svg",
+    "colors": {
+      "primary": "#0D9373",
+      "light": "#07C983",
+      "dark": "#0D9373",
+      "anchors": {
+        "from": "#0D9373",
+        "to": "#07C983"
+      }
+    },
+    "topbarLinks": [
+      {
+        "name": "Support",
+        "url": "mailto:nshutl0@sewanee.edu"
+      }
+    ],
+    "tabs": [
+      {
+        "name": "API Reference",
+        "url": "api-reference"
+      }
+    ],
+    "anchors": [
+      {
+        "name": "Documentation",
+        "icon": "book-open-cover",
+        "url": "https://56dwgeaxdzl.v0.build/"
+      },
+      {
+        "name": "Blog",
+        "icon": "newspaper",
+        "url": "https://medium.com/@LeonceNshuti"
+      }
+    ],
+    "navigation": [
+      {
+        "group": "Get Started",
+        "pages": [
+          "introduction",
+          "quickstart",
+          "development"
+        ]
+      }
+      
+    ],
+    "footerSocials": {
+      "x": "https://x.com/LeonceNshuti",
+      "github": "https://github.com/LNshuti",
+      "linkedin": "https://www.linkedin.com/in/leoncenshuti"
+    }
+  }
