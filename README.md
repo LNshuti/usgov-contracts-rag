@@ -1,6 +1,6 @@
 # Retrieval Augmented Generation Text-to-SQL Application To Analyze US Government Contract Data
 
-This python [application](https://usgov-contracts-analysis-rag2.streamlit.app/) uses Retrieval Augmented Generation(RAG) to ask the data questions directly using plain English. The application then uses OPENAI's GPT 3.5 model to convert this question i.e prompt into SQL, which then queries the SQL Alchemy database that stores the data and returns the solution, *in addition to the SQL statement that generates this data*. 
+This python [application](https://leoncensh-usgov-contracts-rag.hf.space) uses Retrieval Augmented Generation(RAG) to ask the data questions directly using plain English. The application then uses OPENAI's GPT 3.5 model to convert this question i.e prompt into SQL, which then queries the SQL Alchemy database that stores the data and returns the solution, *in addition to the SQL statement that generates this data*. 
 
 The simplicity of testing the correctness of the answers makes this application a powerful, and useful use of Large Language Models(LLMs) in Data Science that can directly provide values to Business Users who are unfamiliar with SQL by allowing them to directly use Business Questions to answer Data Questions in seconds with a Gradio Application.    
 
