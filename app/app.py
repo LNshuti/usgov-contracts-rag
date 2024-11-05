@@ -1,233 +1,181 @@
-import streamlit as st
-import pyperclip
-#import wandb 
+import json
 import openai
+import gradio as gr
+import duckdb
+from functools import lru_cache
 import os
-import pandas as pd
 
-#from st_aggrid import AgGrid
-from sqlalchemy import create_engine, inspect, text
-from typing import Dict, Any
+# =========================
+# Configuration and Setup
+# =========================
 
-from llama_index.legacy import (
-    VectorStoreIndex,
-    download_loader,
-    SimpleDirectoryReader,
-    ServiceContext,
-    StorageContext,
-    load_index_from_storage,
-    SQLDatabase,
-)
+openai.api_key = os.getenv("OPENAI_API_KEY")
+dataset_path = 'sample_contract_df.parquet'  # Update with your Parquet file path
 
-from llama_index.legacy.llama_pack.base import BaseLlamaPack
-from llama_index.legacy.llms import OpenAI
-from llama_index.legacy.llms.palm import PaLM
+schema = [
+    {"column_name": "department_ind_agency", "column_type": "VARCHAR"},
+    {"column_name": "cgac", "column_type": "BIGINT"},
+    {"column_name": "sub_tier", "column_type": "VARCHAR"},
+    {"column_name": "fpds_code", "column_type": "VARCHAR"},
+    {"column_name": "office", "column_type": "VARCHAR"},
+    {"column_name": "aac_code", "column_type": "VARCHAR"},
+    {"column_name": "posteddate", "column_type": "VARCHAR"},
+    {"column_name": "type", "column_type": "VARCHAR"},
+    {"column_name": "basetype", "column_type": "VARCHAR"},
+    {"column_name": "popstreetaddress", "column_type": "VARCHAR"},
+    {"column_name": "popcity", "column_type": "VARCHAR"},
+    {"column_name": "popstate", "column_type": "VARCHAR"},
+    {"column_name": "popzip", "column_type": "VARCHAR"},
+    {"column_name": "popcountry", "column_type": "VARCHAR"},
+    {"column_name": "active", "column_type": "VARCHAR"},
+    {"column_name": "awardnumber", "column_type": "VARCHAR"},
+    {"column_name": "awarddate", "column_type": "VARCHAR"},
+    {"column_name": "award", "column_type": "DOUBLE"},
+    {"column_name": "awardee", "column_type": "VARCHAR"},
+    {"column_name": "state", "column_type": "VARCHAR"},
+    {"column_name": "city", "column_type": "VARCHAR"},
+    {"column_name": "zipcode", "column_type": "VARCHAR"},
+    {"column_name": "countrycode", "column_type": "VARCHAR"}
+]
 
-import sqlite3
-from llama_index.legacy.indices.struct_store import NLSQLTableQueryEngine
+@lru_cache(maxsize=1)
+def get_schema():
+    return schema
 
-os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY']
+COLUMN_TYPES = {col['column_name']: col['column_type'] for col in get_schema()}
 
+# =========================
+# OpenAI API Integration
+# =========================
 
-class StreamlitChatPack(BaseLlamaPack):
+def parse_query(nl_query):
+    messages = [
+        {"role": "system", "content": "You are an assistant that converts natural language queries into SQL queries for the 'contract_data' table."},
+        {"role": "user", "content": f"Schema:\n{json.dumps(schema, indent=2)}\n\nQuery:\n\"{nl_query}\"\n\nSQL:"}
+    ]
 
-    def __init__(
-        self,
-        page: str = "Natural Language to SQL Query",
-        run_from_main: bool = False,
-        **kwargs: Any,
-    ) -> None:
-        """Init params."""
-        
-        self.page = page
-
-    def get_modules(self) -> Dict[str, Any]:
-        """Get modules."""
-        return {}
-    
-    def copy_prompt_to_clipboard(self, prompt):
-        pyperclip.copy(prompt)
-        st.success("Copied to clipboard!")
-
-    def run(self, *args: Any, **kwargs: Any) -> Any:
-        """Run the pipeline."""
-        import streamlit as st
-        # Initialize Weights & Biases
-        #wandb.init(project='streamlit-chat-app', entity='leoncen0-iga')
-
-
-        st.set_page_config(
-            page_title=f"{self.page}",
-            layout="centered",
-            initial_sidebar_state="auto",
-            menu_items=None,
+    try:
+        response = openai.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=messages,
+            temperature=0,
+            max_tokens=150,
         )
+        sql_query = response.choices[0].message.content.strip()
+        return sql_query, ""
+    except Exception as e:
+        return "", f"Error generating SQL query: {e}"
 
-        if "messages" not in st.session_state:  # Initialize the chat messages history
-            st.session_state["messages"] = [
-                {"role": "assistant", "content": f"#### Ask a custom question about the data in the database."}
-            ]
+# =========================
+# Database Interaction
+# =========================
 
-        st.title(
-            f"{self.page}🇺🇸"
-        )
-        st.info(
-            f"Pose any question about the selected table and receive exact SQL queries."
-        )
+def execute_sql_query(sql_query):
+    try:
+        con = duckdb.connect()
+        con.execute(f"CREATE OR REPLACE VIEW contract_data AS SELECT * FROM '{dataset_path}'")
+        result_df = con.execute(sql_query).fetchdf()
+        con.close()
+        return result_df, ""
+    except Exception as e:
+        return None, f"Error executing query: {e}"
 
-        def add_to_message_history(role, content):
-            message = {"role": role, "content": str(content)}
-            st.session_state["messages"].append(
-                message
-            )  # Add response to message history
+# =========================
+# Gradio Application UI
+# =========================
 
-        def get_table_data(table_name, conn):
-            query = f"SELECT * FROM {table_name}"
-            df = pd.read_sql_query(query, conn)
-            return df
+with gr.Blocks() as demo:
+    gr.Markdown("""
+    # Parquet SQL Query and Plotting App
 
-        @st.cache_resource
-        def load_db_llm():
-            # Load the SQLite database
-            engine = create_engine("sqlite:///gov-contracts.db")
-            sql_database = SQLDatabase(engine) #include all tables
+    ## **Query and visualize data** in `sample_contract_df.parquet`
 
-            # Initialize LLM
-            llm2 = OpenAI(temperature=0.1, model="gpt-3.5-turbo-1106")
+    ## Instructions
 
-            service_context = ServiceContext.from_defaults(llm=llm2, embed_model="local")
-            
-            return sql_database, service_context, engine
+    ### 1. **Describe the data you want**: e.g., `Show awards over 1M in CA`
+    ### 2. **Use Example Queries**: Click on any example query button below to execute.
+    ### 3. **Generate SQL**: Or, enter your own query and click "Generate SQL" to see the SQL query.
 
-        sql_database, service_context, engine = load_db_llm()
+    ## Example Queries
+    """)
 
-
-       # Sidebar for database schema viewer
-        st.sidebar.markdown("## Database Schema Viewer")
-
-        # Create an inspector object
-        inspector = inspect(engine)
-
-        # Get list of tables in the database
-        table_names = inspector.get_table_names()
-
-        # Sidebar selection for tables
-        selected_table = st.sidebar.selectbox("Select a Table", table_names)
-
-        db_file = 'gov-contracts.db'
-        conn = sqlite3.connect(db_file)
-    
-        # Display the selected table
-        if selected_table:
-            # Log the table selection event
-            #wandb.log({"selected_table": selected_table})
-            df = get_table_data(selected_table, conn)
-            st.sidebar.text(f"Data for table '{selected_table}':")
-            st.sidebar.dataframe(df)
-            #AgGrid(df)
-            #st.dataframe(df)
-
-            # Show the column names and their types. Include in main panel and not on sidebar
-            st.markdown("#### Table Schema")
-    
-            columns = inspector.get_columns(selected_table)
-            data = [{"Feature": column['name'], "Data Type": str(column['type'])} for column in columns]
-            df = pd.DataFrame(data)
-            
-            st.table(df)
-            # columns = inspector.get_columns(selected_table)
-            # for column in columns:
-            #     st.markdown(f"**{column['name']}** ({column['type']})")
-            
-            # Add streamlit text telling the user to select an example prompt: 
-            st.markdown("#### Select From Example Prompts")
-            example_prompts = ["Return the department_ind_agency and the sum of award in descending order", 
-                               "Return the sum of award in descending order grouped by type limited to the top 10", 
-                               "Return the sum of award by year where the sub_tier is the FEDERAL ACQUISITION SERVICE"]
-
-            for prompt in example_prompts:
-                if st.button(prompt):
-                    selected_prompt = prompt
-                    # Log the selected prompt
-                    #wandb.log({"selected_prompt": prompt})
-                    break
-            else:
-                selected_prompt = None
-    
-        # Close the connection
-        conn.close()
-                
-        # Sidebar Intro
-        st.sidebar.markdown('## App Created By')
-        st.sidebar.markdown("""
-        Leonce Nshuti: 
-        [Linkedin](https://www.linkedin.com/in/leoncenshuti/), [Github](https://github.com/LNshuti), [X](https://twitter.com/LeonceNshuti)
-        """)
-        st.sidebar.markdown('Inspired by Harshad Suryawanshi [Ecommerce RAG Demo](https://github.com/LNshuti/Na2SQL)')
-    
-        
-        st.sidebar.markdown('## Other Projects')
-        st.sidebar.markdown("""
-        - [GRE AI Studdy Buddy: AI Agent to Manage Preparing for the GRE](https://github.com/LNshuti/gre-ai-buddy)
-        - [Tennessee Eviction Tracker](https://github.com/LNshuti/evictions-dashboard)
-        """)
-        
-        if "query_engine" not in st.session_state:  # Initialize the query engine
-            st.session_state["query_engine"] = NLSQLTableQueryEngine(
-                sql_database=sql_database,
-                synthesize_response=True,
-                service_context=service_context
+    with gr.Row():
+        with gr.Column(scale=1):
+            query_input = gr.Textbox(
+                label="Your Query",
+                placeholder='e.g., "What are the total awards over 1M in California?"',
+                lines=1
             )
 
-        for message in st.session_state["messages"]:  # Display the prior chat messages
-            with st.chat_message(message["role"]):
-                st.write(message["content"])
+            gr.Markdown("### Click on an example query:")
+            with gr.Row():
+                btn_example1 = gr.Button("Retrieve the top 15 records from contract_data where basetype is Award Notice, awardee has at least 12 characters, and popcity has more than 5 characters. Exclude the fields sub_tier, popzip, awardnumber, basetype, popstate, active, popcountry, type, countrycode, and popstreetaddress")
+                btn_example2 = gr.Button("Show top 5 departments by award amount")
+                btn_example3 = gr.Button("Execute: SELECT * from contract_data LIMIT 10;")
 
+            btn_generate_sql = gr.Button("Generate SQL Query")
+            sql_query_out = gr.Code(label="Generated SQL Query", language="sql")
+            btn_execute_query = gr.Button("Execute Query")
+            error_out = gr.Markdown("", visible=False)
+        with gr.Column(scale=2):
+            results_out = gr.Dataframe(label="Query Results", interactive=False)
 
-        if prompt := st.chat_input(
-            "Enter your natural language query about the database"
-        ):  # Prompt for user input and save to chat history
-             # Log the user query
-            #wandb.log({"user_query": prompt})
-            with st.chat_message("user"):
-                st.write(prompt)
-            add_to_message_history("user", prompt)
+    with gr.Tab("Dataset Schema"):
+        gr.Markdown("### Dataset Schema")
+        schema_display = gr.JSON(label="Schema", value=get_schema())
 
-        if selected_prompt and (not st.session_state["messages"] or st.session_state["messages"][-1]["content"] != selected_prompt):
-            with st.chat_message("user"):
-                st.write(selected_prompt)
-                add_to_message_history("user", selected_prompt)
+    # =========================
+    # Event Functions
+    # =========================
 
-            with st.spinner():
-                with st.chat_message("assistant"):
-                    response = st.session_state["query_engine"].query("User Question:"+selected_prompt+". ")
-                    sql_query = f"```sql\n{response.metadata['sql_query']}\n```\n**Response:**\n{response.response}\n"
-                    response_container = st.empty()
-                    # Add copy to clipboard functionality
-                    copy_button = st.button("Copy", key="copy_user")
-                    if copy_button:
-                        st.session_state["clipboard_content"] = sql_query
-                        st.experimental_set_query_params(clipboard=st.session_state["clipboard_content"])
-                        st.success("Copied to clipboard!")
-                    response_container.write(sql_query)
-                    add_to_message_history("assistant", sql_query)
+    def generate_sql(nl_query):
+        sql_query, error = parse_query(nl_query)
+        return sql_query, error
 
-        # If last message is not from assistant, generate a new response
-        if st.session_state["messages"][-1]["role"] != "assistant":
-            with st.spinner():
-                with st.chat_message("assistant"):
-                    response = st.session_state["query_engine"].query("User Question:"+prompt+". ")
-                    sql_query = f"```sql\n{response.metadata['sql_query']}\n```\n**Response:**\n{response.response}\n"
-                    response_container = st.empty()
-                    # Add copy to clipboard functionality
-                    copy_button = st.button("Copy", key="copy_assistant")
-                    if copy_button:
-                        st.session_state["clipboard_content"] = sql_query
-                        st.experimental_set_query_params(clipboard=st.session_state["clipboard_content"])
-                        st.success("Copied to clipboard!")
-                    response_container.write(sql_query)
-                    add_to_message_history("assistant", sql_query)
-    #wandb.finish()
-    
-if __name__ == "__main__":
-    StreamlitChatPack(run_from_main=True).run()
+    def execute_query(sql_query):
+        result_df, error = execute_sql_query(sql_query)
+        return result_df, error
+
+    def handle_example_click(example_query):
+        if example_query.strip().upper().startswith("SELECT"):
+            sql_query = example_query
+            result_df, error = execute_sql_query(sql_query)
+            return sql_query, "", result_df, error
+        else:
+            sql_query, error = parse_query(example_query)
+            if error:
+                return sql_query, error, None, error
+            result_df, exec_error = execute_sql_query(sql_query)
+            return sql_query, exec_error, result_df, exec_error
+
+    # =========================
+    # Button Click Event Handlers
+    # =========================
+
+    btn_generate_sql.click(
+        fn=generate_sql,
+        inputs=query_input,
+        outputs=[sql_query_out, error_out]
+    )
+
+    btn_execute_query.click(
+        fn=execute_query,
+        inputs=sql_query_out,
+        outputs=[results_out, error_out]
+    )
+
+    btn_example1.click(
+        fn=lambda: handle_example_click("Retrieve the top 15 records from contract_data where basetype is Award Notice, awardee has at least 12 characters, and popcity has more than 5 characters. Exclude the fields sub_tier, popzip, awardnumber, basetype, popstate, active, popcountry, type, countrycode, and popstreetaddress"),
+        outputs=[sql_query_out, error_out, results_out, error_out]
+    )
+    btn_example2.click(
+        fn=lambda: handle_example_click("Show top 5 departments by award amount"),
+        outputs=[sql_query_out, error_out, results_out, error_out]
+    )
+    btn_example3.click(
+        fn=lambda: handle_example_click("SELECT * from contract_data LIMIT 10;"),
+        outputs=[sql_query_out, error_out, results_out, error_out]
+    )
+
+# Launch the Gradio App
+demo.launch()
