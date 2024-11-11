@@ -63,8 +63,8 @@ python run app/app.py
 
 <img width="185" alt="Starred" src="https://github.com/mishushakov/llm-scraper/assets/10400064/11e2a79f-a835-48c4-9f85-5c104ca7bb49">
 
+![image](https://github.com/user-attachments/assets/4063a746-4bc9-4f30-ae53-de212d6e3b1e)
 
-![image](https://github.com/user-attachments/assets/7fa6ce6a-c7d5-4015-9d2f-6989b993dbf4)
 
 
 ### References. 
