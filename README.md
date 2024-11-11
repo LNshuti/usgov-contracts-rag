@@ -63,6 +63,10 @@ python run app/app.py
 
 <img width="185" alt="Starred" src="https://github.com/mishushakov/llm-scraper/assets/10400064/11e2a79f-a835-48c4-9f85-5c104ca7bb49">
 
+
+![image](https://github.com/user-attachments/assets/7fa6ce6a-c7d5-4015-9d2f-6989b993dbf4)
+
+
 ### References. 
 1. Harshad Suryawanshi. From Natural Language to SQL(Na2SQL): Extracting Insights from Databases using OPENAI GPT3.5 and LlamaIndex. https://github.com/AI-ANK/Na2SQL
 
