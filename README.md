@@ -9,6 +9,10 @@ https://www.loom.com/share/f292263472ae4e9cbfa813655bc7c654?sid=c3a5bf89-f80f-4d
 
 ## Customize this Application with your own Data
 
+**If you found the app useful, please make sure to give us a star!**
+
+![image](https://github.com/user-attachments/assets/4063a746-4bc9-4f30-ae53-de212d6e3b1e)
+
 ### Clone this Repository
 
 ```bash
@@ -59,11 +63,6 @@ datasette serve gov-contracts.db
 ```bash
 python run app/app.py
 ```
-**If you found the app useful, please make sure to give us a star!**
-
-![image](https://github.com/user-attachments/assets/4063a746-4bc9-4f30-ae53-de212d6e3b1e)
-
-
 
 ### References. 
 1. Harshad Suryawanshi. From Natural Language to SQL(Na2SQL): Extracting Insights from Databases using OPENAI GPT3.5 and LlamaIndex. https://github.com/AI-ANK/Na2SQL
