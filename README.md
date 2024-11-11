@@ -59,6 +59,9 @@ datasette serve gov-contracts.db
 ```bash
 python run app/app.py
 ```
+**If you found the app useful, please make sure to give us a star!**
+
+<img width="185" alt="Starred" src="https://github.com/mishushakov/llm-scraper/assets/10400064/11e2a79f-a835-48c4-9f85-5c104ca7bb49">
 
 ### References. 
 1. Harshad Suryawanshi. From Natural Language to SQL(Na2SQL): Extracting Insights from Databases using OPENAI GPT3.5 and LlamaIndex. https://github.com/AI-ANK/Na2SQL
