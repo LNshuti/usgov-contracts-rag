@@ -5,6 +5,9 @@ import duckdb
 from functools import lru_cache
 import os
 
+from fastapi import FastAPI
+import uvicorn
+
 # =========================
 # Configuration and Setup
 # =========================
@@ -189,4 +192,4 @@ with gr.Blocks() as demo:
     
 
 # Launch the Gradio App
-demo.launch()
+demo.launch(share=True)

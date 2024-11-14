@@ -1,5 +1,6 @@
 prod-example/models/snowflake_dbt_deployment.py
 .streamlit 
+src/data/
 text-to-sql-rag/.streamlit 
 data/BuyAme*
 data/sample_contract_df.parquet
