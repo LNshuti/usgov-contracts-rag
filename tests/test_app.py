@@ -1,61 +1,74 @@
 import unittest
-import sqlite3
-import os
 from unittest.mock import patch, MagicMock
-#import pyperclip
-#import streamlit as st
-from sqlalchemy import inspect
-
-import sys
-sys.path.insert(0, '/Users/lnshuti/Library/Mobile Documents/com~apple~CloudDocs/Desktop/Desktop - Leonce’s Mac mini/portfolio/usgov-contracts-rag/text-to-sql-rag')
-from app.app import StreamlitChatPack
 import pandas as pd
+import app  # Ensure app.py and test_app.py are in the same directory
 
-class TestStreamlitChatPack(unittest.TestCase):
-    def setUp(self):
-        self.app = StreamlitChatPack()
+class TestAppFunctions(unittest.TestCase):
+    # Existing tests...
 
-    # Database Interaction Tests
-    def test_database_connection(self):
-        engine = self.app.load_db_llm()[2]
-        self.assertIsNotNone(engine.connect())
+    @patch('app.execute_sql_query')
+    @patch('openai.ChatCompletion.create')
+    def test_handle_example_click_with_custom_query(self, mock_openai, mock_execute_sql_query):
+        # Example natural language query
+        example_query = ("Select the first five characters of zipcode named zip as a separate column "
+                         "SELECT department_ind_agency, cgac, fpds_code, office, aac_code, posteddate, "
+                         "award, awardee, state, city, zipcode FROM contract_data WHERE basetype = 'Award Notice' "
+                         "AND LENGTH(awardee) >= 10 AND LENGTH(popcity) > 5 LIMIT 15")
 
-    def test_table_retrieval(self):
-        engine = self.app.load_db_llm()[2]
-        inspector = inspect(engine)
-        tables = inspector.get_table_names()
-        self.assertIsInstance(tables, list)
+        # Expected SQL query
+        expected_sql_query = '''
+        SELECT
+            department_ind_agency,
+            cgac,
+            fpds_code,
+            office,
+            aac_code,
+            posteddate,
+            award,
+            awardee,
+            state,
+            city,
+            zipcode,
+            LEFT(zipcode, 5) AS zip
+        FROM contract_data
+        WHERE
+            basetype = 'Award Notice' AND
+            LENGTH(awardee) >= 10 AND
+            LENGTH(popcity) > 5
+        LIMIT 15;
+        '''
 
-    def test_data_retrieval(self):
-        engine = self.app.load_db_llm()[2]
-        with engine.connect() as conn:
-            data = self.app.get_table_data('table_name', conn)
-        self.assertIsInstance(data, pd.DataFrame)
+        # Mock OpenAI API response
+        mock_response = MagicMock()
+        mock_response.choices = [MagicMock(message=MagicMock(content=expected_sql_query))]
+        mock_openai.return_value = mock_response
 
-    # User Input Handling Tests
-    # def test_session_state_initialization(self):
-    #     self.app.run()  # This is to simulate starting the app
-    #     self.assertIn("messages", st.session_state)
+        # Mock execute_sql_query response
+        mock_df = pd.DataFrame({
+            'department_ind_agency': ['Dept1', 'Dept2'],
+            'cgac': [123, 456],
+            'fpds_code': ['FP1', 'FP2'],
+            'office': ['Office1', 'Office2'],
+            'aac_code': ['AAC1', 'AAC2'],
+            'posteddate': ['2023-01-01', '2023-01-02'],
+            'award': [1000.0, 2000.0],
+            'awardee': ['Awardee1', 'Awardee2'],
+            'state': ['State1', 'State2'],
+            'city': ['City1', 'City2'],
+            'zipcode': ['123456789', '987654321'],
+            'zip': ['12345', '98765']
+        })
+        mock_execute_sql_query.return_value = (mock_df, "")
 
-    # def test_chat_history_update(self):
-    #     self.app.run()  # Start the app
-    #     test_message = {"role": "user", "content": "test message"}
-    #     self.app.add_to_message_history(test_message["role"], test_message["content"])
-    #     self.assertIn(test_message, st.session_state["messages"])
+        sql_query, error, result_df, exec_error = app.handle_example_click(example_query)
 
-    # Natural Language to SQL Query Conversion Tests
-    def test_query_generation(self):
-        with patch('app.OpenAI_API_Call', return_value='expected SQL query') as mock_api_call:
-            query = self.app.generate_query('natural language input')
-            mock_api_call.assert_called_once_with('natural language input')
-            self.assertEqual(query, 'expected SQL query')
+        self.assertEqual(sql_query.strip(), expected_sql_query.strip())
+        self.assertEqual(error, "")
+        pd.testing.assert_frame_equal(result_df, mock_df)
+        self.assertEqual(exec_error, "")
 
-    # Clipboard Functionality Tests
-    # def test_clipboard_copy(self):
-    #     test_prompt = "Test prompt"
-    #     with patch('app.pyperclip.copy') as mock_copy:
-    #         self.app.copy_prompt_to_clipboard(test_prompt)
-    #         mock_copy.assert_called_once_with(test_prompt)
+        mock_openai.assert_called_once()
+        mock_execute_sql_query.assert_called_once_with(expected_sql_query.strip())
 
 if __name__ == '__main__':
     unittest.main()
