@@ -64,6 +64,14 @@ datasette serve gov-contracts.db
 python run app/app.py
 ```
 
+### Enhancement: XGBOOST prediction of government contract awards with confidence intervals
+In addition to the previous work exploring the dataset, I've developed an appliction using the same dataset to predict award amounts based on the other features. 
+This app has a gradio interface, and it's built in python, hosted on Huggingface. The app takes the dataset as an input to a gradient boosted tree model, after feature
+engineering. The user can select a combination of the features to produce the predicted award amount with a 95% confidence interval based on the bootstrap method. 
+
+#### [application](https://leoncensh-xgboost-gov-contracts.hf.space)
+
+
 ### References. 
 1. Harshad Suryawanshi. From Natural Language to SQL(Na2SQL): Extracting Insights from Databases using OPENAI GPT3.5 and LlamaIndex. https://github.com/AI-ANK/Na2SQL
 
