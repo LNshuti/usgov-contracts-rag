@@ -3,9 +3,9 @@ import pandas as pd
 import openpyxl 
 import pyarrow as pa
 
-XLSX_FILE_PATH = 'data/BuyAmericanActExceptionsandWaiversOctober2023.xlsx'
-CSV_FILE_PATH = 'data/FY2023_archived_opportunities.csv'
-PARQUET_FILE_PATH = 'data/sample_contract_df.parquet'
+XLSX_FILE_PATH = 'src/data/BuyAmericanActExceptionsandWaiversOctober2023.xlsx'
+CSV_FILE_PATH = 'src/data/FY2023_archived_opportunities.csv'
+PARQUET_FILE_PATH = 'src/data/sample_contract_df.parquet'
 DB_FILE_PATH = 'gov-contracts.db'
 TABLE_NAME = 'FY2023_archived_opportunities'
 

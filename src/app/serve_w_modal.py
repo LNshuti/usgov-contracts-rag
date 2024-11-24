@@ -5,7 +5,7 @@ image = (
     modal.Image.debian_slim()
     .apt_install("git")
     .pip_install("streamlit", "numpy", "pandas", "streamlit-pills", "SQLAlchemy", "openai",
-                 "llama-index", "pyperclip")
+                 "llama-index", "pyperclip", "gradio", "duckdb")
     # Use fork until https://github.com/valohai/asgiproxy/pull/11 is merged.
     .pip_install("git+https://github.com/modal-labs/asgiproxy.git")
 )

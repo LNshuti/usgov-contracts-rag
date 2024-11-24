@@ -13,7 +13,7 @@ import uvicorn
 # =========================
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
-dataset_path = 'sample_contract_df.parquet'  # Update with your Parquet file path
+dataset_path = 'data/sample_contract_df.parquet'  
 
 schema = [
     {"column_name": "department_ind_agency", "column_type": "VARCHAR"},
