@@ -5,15 +5,12 @@ import duckdb
 from functools import lru_cache
 import os
 
-from fastapi import FastAPI
-import uvicorn
-
 # =========================
 # Configuration and Setup
 # =========================
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
-dataset_path = 'data/sample_contract_df.parquet'  
+dataset_path = '../data/sample_contract_df.parquet'  # Update with your Parquet file path
 
 schema = [
     {"column_name": "department_ind_agency", "column_type": "VARCHAR"},
@@ -59,7 +56,7 @@ def parse_query(nl_query):
 
     try:
         response = openai.chat.completions.create(
-            model="gpt-4",
+            model="gpt-4o-mini",
             messages=messages,
             temperature=0,
             max_tokens=150,
@@ -87,70 +84,80 @@ def execute_sql_query(sql_query):
 # Gradio Application UI
 # =========================
 
-with gr.Blocks() as demo:
+with gr.Blocks(theme=gr.themes.Soft()) as demo:
     gr.Markdown("""
-    # Use Text to SQL to analyze US Government contract data
-
-    ## Instructions
-
-    ### 1. **Describe the data you want**: e.g., `Show awards over 1M in CA`
-    ### 2. **Use Example Queries**: Click on any example query button below to execute.
-    ### 3. **Generate SQL**: Or, enter your own query and click "Generate SQL" to see the SQL query.
-
-    ## Example Queries
+    <h1 style="text-align:center;">📊 Text-to-SQL Contract Data Explorer</h1>
+    <p style="text-align:center; font-size:1.2em;">Analyze US Government contract data using natural language queries.</p>
     """)
-
-    with gr.Row():
-        with gr.Column(scale=1):
     
-            gr.Markdown("### Click on an example query:")
-            with gr.Row():
-                btn_example1 = gr.Button("Retrieve the top 15 records from contract_data where basetype is Award Notice, awardee has at least 12 characters, and popcity has more than 5 characters. Exclude the fields sub_tier, popzip, awardnumber, basetype, popstate, active, popcountry, type, countrycode, and popstreetaddress")
-                btn_example2 = gr.Button("Show top 10 departments by award amount")
-                btn_example3 = gr.Button("SELECT department_ind_agency, CONCAT('$', ROUND(SUM(award), 0)) AS sum_award FROM contract_data GROUP BY department_ind_agency ORDER BY SUM(award) DESC LIMIT 25")
-                btn_example4 = gr.Button("Retrieve the top 15 records from contract_data where basetype is Award Notice, awardee has at least 12 characters, and popcity has more than 5 characters. Exclude the fields sub_tier, popzip, awardnumber, basetype, popstate, active, popcountry, type, countrycode, and popstreetaddress")
-                btn_example5 = gr.Button("SELECT awardnumber,awarddate,award, office, department_ind_agency,awardee from contract_data WHERE awardee IS NOT NULL AND award IS NOT NULL AND popcity IS NOT NULL AND award > 100000000 LIMIT 10;")
-
+    with gr.Row():
+        with gr.Column(scale=1, min_width=350):
+            gr.Markdown("### 🔍 Enter Your Query")
             query_input = gr.Textbox(
-                label="Your Query",
-                placeholder='e.g., "What are the total awards over 1M in California?"',
-                lines=1
+                label="",
+                placeholder='e.g., "What are the total awards over $1M in California?"',
+                lines=2
             )
 
-            btn_generate_sql = gr.Button("Generate SQL Query")
-            sql_query_out = gr.Code(label="Generated SQL Query", language="sql")
-            btn_execute_query = gr.Button("Execute Query")
-            error_out = gr.Markdown("", visible=False)
-        with gr.Column(scale=2):
-            results_out = gr.Dataframe(label="Query Results", interactive=False)
+            btn_generate_sql = gr.Button("📝 Generate SQL Query", variant="primary")
+            sql_query_out = gr.Code(label="🛠️ Generated SQL Query", language="sql")
 
-    with gr.Tab("Dataset Schema"):
-        gr.Markdown("### Dataset Schema")
-        schema_display = gr.JSON(label="Schema", value=get_schema())
+            btn_execute_query = gr.Button("🚀 Execute Query", variant="secondary")
+            error_out = gr.Markdown("", visible=False, elem_id="error_message")
+            
+            gr.Markdown("### 💡 Example Queries")
+            with gr.Column():
+                example_queries = [
+                    "Show the top 10 departments by total award amount.",
+                    "List contracts where the award amount exceeds $5,000,000.",
+                    "Retrieve awards over $1M in California.",
+                    "Find the top 5 awardees by number of contracts.",
+                    "Display contracts awarded after 2020 in New York.",
+                    "What is the total award amount by state?"
+                ]
+                example_buttons = []
+                for i, query in enumerate(example_queries):
+                    btn = gr.Button(query, variant="link", size="sm", interactive=True)
+                    example_buttons.append(btn)
+            
+            with gr.Accordion("📄 Dataset Schema", open=False):
+                gr.JSON(get_schema(), label="Schema")
+
+        with gr.Column(scale=2):
+            gr.Markdown("### 📊 Query Results")
+            results_out = gr.DataFrame(label="", interactive=False, row_count=10)
+            status_info = gr.Markdown("", visible=False, elem_id="status_info")
 
     # =========================
     # Event Functions
     # =========================
 
     def generate_sql(nl_query):
+        if not nl_query.strip():
+            return "", "⚠️ Please enter a natural language query."
         sql_query, error = parse_query(nl_query)
-        return sql_query, error
+        if error:
+            return "", f"❌ {error}"
+        return sql_query, ""
 
     def execute_query(sql_query):
+        if not sql_query.strip():
+            return None, "⚠️ Please generate an SQL query first."
         result_df, error = execute_sql_query(sql_query)
-        return result_df, error
+        if error:
+            return None, f"❌ {error}"
+        if result_df.empty:
+            return None, "ℹ️ The query returned no results."
+        return result_df, ""
 
     def handle_example_click(example_query):
-        if example_query.strip().upper().startswith("SELECT"):
-            sql_query = example_query
-            result_df, error = execute_sql_query(sql_query)
-            return sql_query, "", result_df, error
-        else:
-            sql_query, error = parse_query(example_query)
-            if error:
-                return sql_query, error, None, error
-            result_df, exec_error = execute_sql_query(sql_query)
-            return sql_query, exec_error, result_df, exec_error
+        sql_query, error = parse_query(example_query)
+        if error:
+            return "", f"❌ {error}", None
+        result_df, exec_error = execute_sql_query(sql_query)
+        if exec_error:
+            return sql_query, f"❌ {exec_error}", None
+        return sql_query, "", result_df
 
     # =========================
     # Button Click Event Handlers
@@ -168,28 +175,13 @@ with gr.Blocks() as demo:
         outputs=[results_out, error_out]
     )
 
-    btn_example1.click(
-        fn=lambda: handle_example_click("Retrieve the top 15 records from contract_data where basetype is Award Notice, awardee has at least 12 characters, and popcity has more than 5 characters. Exclude the fields sub_tier, popzip, awardnumber, basetype, popstate, active, popcountry, type, countrycode, and popstreetaddress"),
-        outputs=[sql_query_out, error_out, results_out, error_out]
-    )
-    btn_example2.click(
-        fn=lambda: handle_example_click("Show top 10 departments by award amount. Round to zero decimal places."),
-        outputs=[sql_query_out, error_out, results_out, error_out]
-    )
-    btn_example3.click(
-        fn=lambda: handle_example_click("SELECT department_ind_agency, CONCAT('$', ROUND(SUM(award), 0)) AS sum_award FROM contract_data GROUP BY department_ind_agency ORDER BY SUM(award) DESC LIMIT 25"),
-        outputs=[sql_query_out, error_out, results_out, error_out]
-    )
-    btn_example4.click(
-        fn=lambda: handle_example_click("Retrieve the top 15 records from contract_data where basetype is Award Notice, awardee has at least 12 characters, and popcity has more than 5 characters. Exclude the fields sub_tier, popzip, awardnumber, basetype, popstate, active, popcountry, type, countrycode, and popstreetaddress"),
-        outputs=[sql_query_out, error_out, results_out, error_out]
-    )
-    btn_example5.click(
-        fn=lambda: handle_example_click("SELECT awardnumber,awarddate,award, office, department_ind_agency,awardee from contract_data WHERE awardee IS NOT NULL AND award IS NOT NULL AND popcity IS NOT NULL AND award > 100000000 LIMIT 10;"),
-        outputs=[sql_query_out, error_out, results_out, error_out]
-    )
-
-    
+    # Assign click events to example buttons
+    for btn, query in zip(example_buttons, example_queries):
+        btn.click(
+            fn=lambda q=query: handle_example_click(q),
+            inputs=None,
+            outputs=[sql_query_out, error_out, results_out]
+        )
 
 # Launch the Gradio App
-demo.launch(share=True)
+demo.queue().launch(debug=True, share=True)
