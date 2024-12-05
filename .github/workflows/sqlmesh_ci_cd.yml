@@ -1,4 +1,6 @@
-name: USGOVRAG
+# .github/workflows/sqlmesh_ci_cd.yml
+
+name: 🚀 SQLMesh Bot 🚀
 
 on:
   pull_request:
@@ -15,16 +17,18 @@ jobs:
     name: SQLMesh Bot Workflow
     runs-on: ubuntu-latest
     permissions:
-      contents: write       # Required to access code in PR
-      issues: write         # Required to post comments
-      checks: write         # Required to update check runs
-      pull-requests: write  # Required to merge
+      contents: write         # Required to access code in PR
+      issues: write           # Required to post comments
+      checks: write           # Required to update check runs
+      pull-requests: write    # Required to merge
     env:
       ENVIRONMENT: prod
       GATEWAY: default
     steps:
       - name: Setup Python
         uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'  # Specify your Python version
 
       - name: Checkout PR branch
         uses: actions/checkout@v4
@@ -35,6 +39,6 @@ jobs:
         run: pip install -r requirements.txt
         shell: bash
 
-      - name: Run CI/CD Bot
+      - name: Run SQLMesh CI/CD Bot
         run: |
           sqlmesh_cicd -p ${{ github.workspace }} github --token ${{ secrets.GITHUB_TOKEN }} run-all

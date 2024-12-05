@@ -15,3 +15,4 @@ text-to-sql-rag/log_app_wandb.py
 app/eval_tutorial.py
 app/.streamlit/
 .Rproj.user
+logs/

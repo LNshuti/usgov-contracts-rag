@@ -1,0 +1,16 @@
+# sqlmesh.yml
+
+gateways:
+  default:
+    connection:
+      type: duckdb
+      catalogs:
+        persistent: 'local.duckdb'   # File-based DuckDB database
+        ephemeral: ':memory:'        # In-memory DuckDB database
+
+environments:
+  prod:
+    gateway: default
+
+# Add any additional SQLMesh configurations below
+# For example, model configurations, macros, etc.
