@@ -1,4 +1,4 @@
-name: USGOVRAG 
+name: USGOVRAG
 
 on:
   pull_request:
@@ -15,10 +15,13 @@ jobs:
     name: SQLMesh Bot Workflow
     runs-on: ubuntu-latest
     permissions:
-      contents: write     # Required to access code in PR
-      issues: write       # Required to post comments
-      checks: write       # Required to update check runs
+      contents: write       # Required to access code in PR
+      issues: write         # Required to post comments
+      checks: write         # Required to update check runs
       pull-requests: write  # Required to merge
+    env:
+      ENVIRONMENT: prod
+      GATEWAY: default
     steps:
       - name: Setup Python
         uses: actions/setup-python@v4
