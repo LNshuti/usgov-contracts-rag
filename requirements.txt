@@ -9,3 +9,5 @@ torch
 pyperclip
 wandb 
 pandas 
+flask[async]>=2.2.2
+stytch>=9.3.1
