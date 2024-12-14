@@ -16,3 +16,7 @@ app/eval_tutorial.py
 app/.streamlit/
 .Rproj.user
 logs/
+.cache/
+.cache/*
+logs/
+logs/*

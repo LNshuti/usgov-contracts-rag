@@ -1,0 +1,10 @@
+
+default_connection:
+  type: duckdb
+  path: db.db
+  options:
+    access_mode: READ_WRITE
+    threads: 4
+    lock_configuration:
+      home_directory: .sqlmesh_locks
+      wait_ms: 1000
