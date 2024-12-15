@@ -5,9 +5,7 @@ This python [application](https://leoncensh-usgov-contracts-rag.hf.space) uses R
 The simplicity of testing the correctness of the answers makes this application a powerful, and useful use of Large Language Models(LLMs) in Data Science that can directly provide values to Business Users who are unfamiliar with SQL by allowing them to directly use Business Questions to answer Data Questions in seconds with a Gradio Application.    
 
 # Demo 
-![usgovrag480](https://github.com/user-attachments/assets/6097a787-f4be-4b00-82e6-f18542ecdfb8)
-
-
+![Uploading usgovrag.gif…]()
 
 ## Customize this Application with your own Data
 
