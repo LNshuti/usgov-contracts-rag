@@ -5,9 +5,11 @@ dependencies:
   - python=3.11
   - pip
   - pip:
+    - sqlmesh==0.138.0
     - sqlalchemy
     - streamlit
     - pyperclip
     - pandas
     - defog
     - Flask
+    - duckdb>=0.9.0
