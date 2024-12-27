@@ -24,3 +24,8 @@ logs/*
 .gradio/*
 .pytest_cache/*
 .pytest_cache/
+.gitattributes/
+.vscode/
+.pytest_cache/
+.gradio/
+.cache/
