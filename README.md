@@ -65,12 +65,10 @@ datasette serve gov-contracts.db
 python run app/app.py
 ```
 
-### Enhancement: XGBOOST prediction of government contract awards with confidence intervals
-In addition to the previous work exploring the dataset, I've developed an appliction using the same dataset to predict award amounts based on the other features. 
-This app has a gradio interface, and it's built in python, hosted on Huggingface. The app takes the dataset as an input to a gradient boosted tree model, after feature
-engineering. The user can select a combination of the features to produce the predicted award amount with a 95% confidence interval based on the bootstrap method. 
+### Update: 03/28/2025
+I just published a medium article proving more details on this app, and the plan for keeping the underlying data up to date to keep the application useful. Please [read on](https://medium.com/@LeonceNshuti/using-text-to-sql-embeddings-to-analyze-u-s-government-contracts-data-b654a736671b)!
 
-#### [application](https://leoncensh-xgboost-gov-contracts.hf.space)
+
 
 
 ### References. 
